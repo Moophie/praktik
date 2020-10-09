@@ -15,6 +15,13 @@ class CompaniesSeeder extends Seeder
     {
         //
         $company = new \App\Models\Company();
+        $company->name = "Google";
+        $company->location = "Los Angeles";
+        $company->description = "Search engine";
+        $company->email = "google@gmail.com";
+        $company->rating = 0;
+        $company->save();
+        $company = new \App\Models\Company();
         $company->name = "Microsoft";
         $company->location = "Washington";
         $company->description = "Computer bedrijf";
