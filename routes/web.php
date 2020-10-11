@@ -40,3 +40,7 @@ Route::get('/settings', function(){
 Route::get('/settingspro', function(){
     return view('settingspro');
 });
+
+Route::get('/vacancy', function(){
+    return view('vacancy');
+});
