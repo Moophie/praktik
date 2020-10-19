@@ -11,9 +11,9 @@
     <h1>Homepage</h1>
 
     <ul class="vacancies">
-        <li><a href="/vacancy">Vacancy 1</a></li>
-        <li><a href="/vacancy">Vacancy 2</a></li>
-        <li><a href="/vacancy">Vacancy 3</a></li>
+        <li><a href="/jobs">Vacancy 1</a></li>
+        <li><a href="/jobs">Vacancy 2</a></li>
+        <li><a href="/jobs">Vacancy 3</a></li>
     </ul>
 
     <ul>
