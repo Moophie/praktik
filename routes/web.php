@@ -41,6 +41,4 @@ Route::get('/settingspro', function(){
     return view('settingspro');
 });
 
-Route::get('/vacancy', function(){
-    return view('vacancy');
-});
+Route::get('/jobs', 'App\Http\Controllers\JobsController@index');
