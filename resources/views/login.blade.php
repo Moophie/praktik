@@ -18,7 +18,7 @@
         <div class="loginForm">
             <form action="" method="post">
                 @auth
-                <div class="alert alert-info">We are logged in!</div>
+                <div class="alert alert-info">You are logged in!</div>
                 @endauth
 
                 {{ csrf_field() }}
