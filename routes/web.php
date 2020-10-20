@@ -21,26 +21,25 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/signup', function(){
-    return view('signup');
-});
+Route::get('/signup', 'App\Http\Controllers\UserController@signup');
+Route::post('/signup', 'App\Http\Controllers\UserController@handleSignup');
 
-Route::get('/student', function(){
+Route::get('/student', function () {
     return view('student');
 });
 
-Route::get('/company', function(){
+Route::get('/company', function () {
     return view('company');
 });
 
-Route::get('/settings', function(){
+Route::get('/settings', function () {
     return view('settings');
 });
 
-Route::get('/settingspro', function(){
+Route::get('/settingspro', function () {
     return view('settingspro');
 });
 
-Route::get('/vacancy', function(){
+Route::get('/vacancy', function () {
     return view('vacancy');
 });
