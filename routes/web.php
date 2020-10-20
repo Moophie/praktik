@@ -17,9 +17,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', 'App\Http\Controllers\UserController@login');
+Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
 
 Route::get('/signup', 'App\Http\Controllers\UserController@signup');
 Route::post('/signup', 'App\Http\Controllers\UserController@handleSignup');
