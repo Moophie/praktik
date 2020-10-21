@@ -48,3 +48,5 @@ Route::get('/jobs/{ job }', 'App\Http\Controllers\JobsController@show');
 Route::get('/newjob', function(){
     return view('newjob');
 });
+
+Route::get('/applications', 'App\Http\Controllers\ApplicationsController@index');
