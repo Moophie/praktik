@@ -11,8 +11,8 @@ class JobsController extends Controller
         return view('jobs/index', $data);
     }
 
-    public function show(\App\Job $job){
-        $listing = $job;
-        dd($listing);
+    public function show(\App\Models\Job $job){
+        $job = $job;
+        dd($job);
     }
 }
