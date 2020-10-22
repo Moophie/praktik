@@ -34,13 +34,18 @@ class CompanyController extends Controller
         $request->flash();
 
         $company = new \App\Models\Company();
+        $company->user_id = $request->input('user_id'); 
         $company->name = $request->input('name'); 
-        $company->bio = $request->input('bio');
-        $company->bio = $request->input('bio');
-        $company->bio = $request->input('bio');
-        $company->bio = $request->input('bio');
-        $company->bio = $request->input('bio');
-        $company->bio = $request->input('bio');
+        $company->city = $request->input('city');
+        $company->address = $request->input('address');
+        $company->geolat = $request->input('geolat');
+        $company->geolng = $request->input('geolng');
+        $company->logo = $request->input('logo');
+        $company->website = $request->input('website');
+        $company->description = $request->input('description');
+        $company->email = $request->input('email');
+        $company->phone = $request->input('phone');
+        $company->rating = 0;
 
         $company->save();
 
