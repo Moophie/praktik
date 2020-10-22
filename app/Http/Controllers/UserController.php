@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -37,5 +38,18 @@ class UserController extends Controller
             // redirect
         };
         return view('login');
+    }
+
+    public function uploadImage(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $filename = $request->image->getClientOriginalName();
+            $request->image->storeAs('images', $filename, 'public');
+            // auth()->user()->update(['profilepic' => 'test']);
+            DB::table('users')
+                ->where('id', Auth::user()->id)
+                ->update(['profilepic' => $filename]);
+        }
+        return redirect()->back();
     }
 }

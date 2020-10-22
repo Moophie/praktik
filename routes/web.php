@@ -27,6 +27,8 @@ Route::get('/student', function () {
     return view('student');
 });
 
+Route::post('/upload', 'App\Http\Controllers\UserController@uploadImage');
+
 Route::get('/company', function () {
     return view('company');
 });
