@@ -1,3 +1,17 @@
+<?php
+
+$lat = $company->geolat;
+$lng = $company->geolng;
+
+$nearest_station = DB::select("SELECT name, SQRT(POW(69.1 * (latitude - $lat), 2) + POW(69.1 * ($lng - longitude) * COS(latitude / 57.3), 2)) 
+AS distance
+FROM stations 
+ORDER BY distance 
+LIMIT 1");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +44,11 @@
     <h3>Contact</h3>
     <p>{{ $company->email }}</p>
     <p>{{ $company->phone }}</p>
+
+    <h3>Accessibility</h3>
+    <h3>{{ $company->pubtrans_score }}/5</h3>
+    <h3>Nearest Station</h3>
+    {{ $nearest_station[0]->name }}
 </body>
 
 </html>

@@ -28,6 +28,7 @@ class CompanyFactory extends Factory
             'address' => $this->faker->streetAddress(),
             'geolat' => $this->faker->randomfloat($nbMaxDecimals = 6, $min = -90, $max = 90),
             'geolng' => $this->faker->randomfloat($nbMaxDecimals = 6, $min = -180, $max = 180),
+            'pubtrans_score' => $this->faker->numberBetween($min = 0, $max = 3),
             'logo' => "https://picsum.photos/200",
             'website' => $this->faker->url(),
             'description' => $this->faker->realText(200),

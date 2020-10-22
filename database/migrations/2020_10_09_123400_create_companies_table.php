@@ -22,6 +22,7 @@ class CreateCompaniesTable extends Migration
             $table->string('address');
             $table->decimal('geolat', 8, 6);
             $table->decimal('geolng', 9, 6);
+            $table->integer('pubtrans_score');
             $table->string('logo');
             $table->string('website');
             $table->text('description');

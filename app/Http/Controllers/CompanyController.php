@@ -15,7 +15,6 @@ class CompanyController extends Controller
 
     public function show($company)
     {
-
         $data['company'] = \App\Models\Company::where('id', $company)->first();
         return view('companies/show', $data);
     }
@@ -34,6 +33,8 @@ class CompanyController extends Controller
 
         $request->flash();
 
+        $pubtrans_score = 0;
+
         $company = new \App\Models\Company();
         $company->user_id = $request->input('user_id');
         $company->name = $request->input('name');
@@ -46,7 +47,8 @@ class CompanyController extends Controller
         $company->description = $request->input('description');
         $company->email = $request->input('email');
         $company->phone = $request->input('phone');
-        $company->rating = 0;
+        $company->rating = 1;
+        $company->pubtrans_score = $pubtrans_score;
 
         $company->save();
 
