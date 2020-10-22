@@ -14,7 +14,9 @@ class CompaniesSeeder extends Seeder
     public function run()
     {
         //
-        $company = new \App\Models\Company();
+        \App\Models\Company::factory(5)->create();
+
+        /* $company = new \App\Models\Company();
         $company->name = "Google";
         $company->location = "Los Angeles";
         $company->description = "Search engine";
@@ -48,6 +50,6 @@ class CompaniesSeeder extends Seeder
         $company->description = "Digital agency";
         $company->email = "intracto@gmail.com";
         $company->rating = 0;
-        $company->save();
+        $company->save(); */
     }
 }
