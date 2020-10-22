@@ -1,0 +1,33 @@
+$(document).ready(function () {
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $("#city").blur(function () {
+        var city = $("#city").val();
+        var name = $("#name").val();
+
+        $.ajax({
+            url: "/companies/getCompanyInfo",
+            type: "POST",
+            data: {
+                name: name,
+                city: city
+            },
+            success: function (response) {
+                console.log(response);
+                if (response) {
+                    $("#address").val(response['response']['venue']['location']['address']);
+                    $("#geolat").val(response['response']['venue']['location']['lat']);
+                    $("#geolng").val(response['response']['venue']['location']['lng']);
+                    $("#phone").val(response['response']['venue']['contact']['phone']);
+                    $("#website").val(response['response']['venue']['url']);
+                }
+            },
+        });
+    });
+
+});

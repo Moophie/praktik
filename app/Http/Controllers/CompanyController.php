@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class CompanyController extends Controller
 {
@@ -34,8 +35,8 @@ class CompanyController extends Controller
         $request->flash();
 
         $company = new \App\Models\Company();
-        $company->user_id = $request->input('user_id'); 
-        $company->name = $request->input('name'); 
+        $company->user_id = $request->input('user_id');
+        $company->name = $request->input('name');
         $company->city = $request->input('city');
         $company->address = $request->input('address');
         $company->geolat = $request->input('geolat');
@@ -56,4 +57,26 @@ class CompanyController extends Controller
         return redirect('/companies');
     }
 
+    public function getCompanyInfo(Request $request)
+    {
+        $city = $request->input('city');
+        $name = $request->input('name');
+
+        $venue = Http::get("https://api.foursquare.com/v2/venues/search", [
+            'client_id' => env('FOURSQUARE_CLIENT_ID'),
+            'client_secret' => env('FOURSQUARE_CLIENT_SECRET'),
+            'v' => "20201022",
+            'near' => $city,
+            'query' => $name,
+            'limit' => 1
+        ])->json();
+
+        $venueDetails = Http::get("https://api.foursquare.com/v2/venues/" . $venue['response']['venues'][0]['id'], [
+            'client_id' => env('FOURSQUARE_CLIENT_ID'),
+            'client_secret' => env('FOURSQUARE_CLIENT_SECRET'),
+            'v' => "20201022"
+        ])->json();
+
+        return response($venueDetails);
+    }
 }
