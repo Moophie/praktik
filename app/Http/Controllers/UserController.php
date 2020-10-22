@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -44,6 +45,9 @@ class UserController extends Controller
     {
         if ($request->hasFile('image')) {
             $filename = $request->image->getClientOriginalName();
+            if (Auth::user()->profilepic) {
+                Storage::delete('/public/images/' . Auth::user()->profilepic);
+            }
             $request->image->storeAs('images', $filename, 'public');
             // auth()->user()->update(['profilepic' => 'test']);
             DB::table('users')
