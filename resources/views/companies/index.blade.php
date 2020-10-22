@@ -7,6 +7,8 @@
     <title>List of companies</title>
 </head>
 <body>
+    <button class="btn btn-primary"><a href="/companies/create">Create your own</a></button>
+    
     <h1>All companies</h1>
 
     @foreach ($companies as $company)

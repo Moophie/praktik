@@ -30,7 +30,9 @@ Route::get('/student', function(){
 });
 
 Route::get('/companies', 'App\Http\Controllers\CompanyController@index');
+Route::get('/companies/create', 'App\Http\Controllers\CompanyController@create');
 Route::get('/companies/{company}', 'App\Http\Controllers\CompanyController@show');
+Route::post('/companies', 'App\Http\Controllers\CompanyController@store');
 
 Route::get('/settings', function(){
     return view('settings');
