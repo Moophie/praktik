@@ -41,19 +41,31 @@ class UserController extends Controller
         return view('login');
     }
 
-    public function uploadImage(Request $request)
+    public function uploadSettings(Request $request)
     {
+        // upload profile picture
         if ($request->hasFile('image')) {
             $filename = $request->image->getClientOriginalName();
             if (Auth::user()->profilepic) {
                 Storage::delete('/public/images/' . Auth::user()->profilepic);
             }
             $request->image->storeAs('images', $filename, 'public');
-            // auth()->user()->update(['profilepic' => 'test']);
             DB::table('users')
                 ->where('id', Auth::user()->id)
                 ->update(['profilepic' => $filename]);
         }
+        // upload cv file
+        if ($request->hasFile('cv')) {
+            $filename = $request->cv->getClientOriginalName();
+            if (Auth::user()->cv) {
+                Storage::delete('/public/files/' . Auth::user()->cv);
+            }
+            $request->cv->storeAs('files', $filename, 'public');
+            DB::table('users')
+                ->where('id', Auth::user()->id)
+                ->update(['cv' => $filename]);
+        }
+
         return redirect()->back();
     }
 }

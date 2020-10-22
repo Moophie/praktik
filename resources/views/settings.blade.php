@@ -13,7 +13,13 @@
 
     <form action="/upload" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
+
+        <label for="image">Profile picture</label><br>
         <input type="file" name="image">
+        <br>
+        <label for="cv">CV</label><br>
+        <input type="file" name="cv">
+        <br>
         <input type="submit" value="Upload">
     </form>
 
