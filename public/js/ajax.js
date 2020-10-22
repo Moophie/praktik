@@ -21,8 +21,8 @@ $(document).ready(function () {
                 console.log(response);
                 if (response) {
                     $("#address").val(response['response']['venue']['location']['address']);
-                    $("#geolat").val(response['response']['venue']['location']['lat']);
-                    $("#geolng").val(response['response']['venue']['location']['lng']);
+                    $("#geolat").val(parseFloat(response['response']['venue']['location']['lat']).toFixed(4));
+                    $("#geolng").val(parseFloat(response['response']['venue']['location']['lng']).toFixed(4));
                     $("#phone").val(response['response']['venue']['contact']['phone']);
                     $("#website").val(response['response']['venue']['url']);
                 }

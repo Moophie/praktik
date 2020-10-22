@@ -19,17 +19,17 @@
 
         <div class="form-group">
             <label for="name">user_id</label>
-            <input value="3" type="text" class="form-control" id="user_id" name="user_id">
+            <input value="3" type="text" class="form-control" id="user_id" name="user_id" >
         </div>
 
         <div class="form-group">
             <label for="name">geolat</label>
-            <input value="78" type="number" class="form-control" id="geolat" name="geolat">
+            <input type="number" class="form-control" id="geolat" name="geolat" step="any">
         </div>
 
         <div class="form-group">
             <label for="name">geolng</label>
-            <input value="-132" type="number" class="form-control" id="geolng" name="geolng">
+            <input type="number" class="form-control" id="geolng" name="geolng" step="any">
         </div>
 
         <div class="form-group">
