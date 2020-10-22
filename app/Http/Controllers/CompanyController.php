@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
+
 
 class CompanyController extends Controller
 {
@@ -33,8 +35,6 @@ class CompanyController extends Controller
 
         $request->flash();
 
-        $pubtrans_score = 0;
-
         $company = new \App\Models\Company();
         $company->user_id = $request->input('user_id');
         $company->name = $request->input('name');
@@ -48,6 +48,19 @@ class CompanyController extends Controller
         $company->email = $request->input('email');
         $company->phone = $request->input('phone');
         $company->rating = 1;
+
+        $lat = $company->geolat;
+        $lng = $company->geolng;
+
+        $nearest_station = DB::select("SELECT name, SQRT(POW(111.2 * (latitude - $lat), 2) + POW(111.2 * ($lng - longitude) * COS(latitude / 57.3), 2)) 
+        AS distance FROM stations ORDER BY distance LIMIT 1");
+
+        $pubtrans_score = 0;
+
+        if ($nearest_station[0]->distance < 2) {
+            $pubtrans_score += 1;
+        }
+
         $company->pubtrans_score = $pubtrans_score;
 
         $company->save();
@@ -82,4 +95,3 @@ class CompanyController extends Controller
         return response($venueDetails);
     }
 }
-

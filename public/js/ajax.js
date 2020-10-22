@@ -18,7 +18,6 @@ $(document).ready(function () {
                 city: city
             },
             success: function (response) {
-                console.log(response);
                 if (response) {
                     $("#address").val(response['response']['venue']['location']['address']);
                     $("#geolat").val(parseFloat(response['response']['venue']['location']['lat']).toFixed(6));

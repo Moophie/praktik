@@ -3,11 +3,8 @@
 $lat = $company->geolat;
 $lng = $company->geolng;
 
-$nearest_station = DB::select("SELECT name, SQRT(POW(69.1 * (latitude - $lat), 2) + POW(69.1 * ($lng - longitude) * COS(latitude / 57.3), 2)) 
-AS distance
-FROM stations 
-ORDER BY distance 
-LIMIT 1");
+$nearest_station = DB::select("SELECT name, SQRT(POW(111.2 * (latitude - $lat), 2) + POW(111.2 * ($lng - longitude) * COS(latitude / 57.3), 2)) 
+AS distance FROM stations ORDER BY distance LIMIT 1");
 
 ?>
 
@@ -37,7 +34,7 @@ LIMIT 1");
     <li>interns</li>
 
     <h3>Rating</h3>
-    <h3>{{ $company->rating }}/5</h3>
+    <h3>{{ $company->rating }}/3</h3>
     <article>Their coffee tastes like dirt, beautiful campus though!</article>
     <p>- John Doe</p>
 
