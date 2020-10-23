@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,13 @@ Route::get('/student', function () {
 });
 
 Route::post('/upload', 'App\Http\Controllers\UserController@uploadSettings');
+
+Route::get('/dribbble', function () {
+    $apiKey = "0fb4139c41c6c567c9b3e1b7461df732da60ae4f0549716287285b5b5e80d92e";
+    $url = "https://api.dribbble.com/v2/user/shots?access_token=" . $apiKey;
+    $response = Http::get($url)->json();
+    dd($response);
+});
 
 Route::get('/company', function () {
     return view('company');
