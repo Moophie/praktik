@@ -11,8 +11,8 @@ class JobsController extends Controller
         return view('jobs/index', $data);
     }
 
-    public function show(\App\Models\Job $job){
-        $job = $job;
+    public function show($job){
+        $job = \App\Models\Job::where('id', $job)->with('applications')->first();
         dd($job);
     }
 }
