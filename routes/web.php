@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,11 @@ Route::get('/student', function () {
     return view('student');
 });
 
-Route::get('/company', function () {
-    return view('company');
-});
+Route::get('/companies', 'App\Http\Controllers\CompanyController@index');
+Route::get('/companies/create', 'App\Http\Controllers\CompanyController@create');
+Route::post('/companies', 'App\Http\Controllers\CompanyController@store');
+Route::post('/companies/getCompanyInfo', 'App\Http\Controllers\CompanyController@getCompanyInfo');
+Route::get('/companies/{company}', 'App\Http\Controllers\CompanyController@show');
 
 Route::get('/settings', function () {
     return view('settings');
