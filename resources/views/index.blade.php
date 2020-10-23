@@ -23,7 +23,6 @@
         <li><a href="/settings">Student settings</a></li>
         <li><a href="/settingspro">Professional settings</a></li>
         <li><a href="/companies">Companies</a></li>
-        <li><a href="/company">Company profile</a></li>
         <li><a href="/student">Student profile</a></li>
     </ul>
 </body>

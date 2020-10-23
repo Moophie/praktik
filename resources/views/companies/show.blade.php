@@ -34,7 +34,7 @@ AS distance FROM stations ORDER BY distance LIMIT 1");
     <li>interns</li>
 
     <h3>Rating</h3>
-    <h3>{{ $company->rating }}/3</h3>
+    <h3>{{ $company->rating }}/5</h3>
     <article>Their coffee tastes like dirt, beautiful campus though!</article>
     <p>- John Doe</p>
 
@@ -43,7 +43,7 @@ AS distance FROM stations ORDER BY distance LIMIT 1");
     <p>{{ $company->phone }}</p>
 
     <h3>Accessibility</h3>
-    <h3>{{ $company->pubtrans_score }}/5</h3>
+    <h3>{{ $company->pubtrans_score }}/3</h3>
     <h3>Nearest Station</h3>
     {{ $nearest_station[0]->name }}
 </body>
