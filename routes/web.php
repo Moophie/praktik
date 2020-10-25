@@ -44,9 +44,7 @@ Route::get('/settingspro', function(){
 // vacatures
 Route::get('/jobs', 'App\Http\Controllers\JobsController@index');
 Route::get('/jobs/{ job }', 'App\Http\Controllers\JobsController@show');
-
-Route::get('/newjob', function(){
-    return view('newjob');
-});
+Route::get('/jobs/create', 'App\Http\Controllers\JobsController@create');
+Route::post('/jobs','App\Http\Controllers\JobsController@store');
 
 Route::get('/applications', 'App\Http\Controllers\ApplicationsController@index');

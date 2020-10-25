@@ -12,7 +12,21 @@ class JobsController extends Controller
     }
 
     public function show($job){
-        $job = \App\Models\Job::where('id', $job)->with('applications')->first();
+        $job = \App\Models\Job::where('id', $job)->with('applications')->get();
         dd($job);
+    }
+
+    public function create(){
+        return view('jobs/create');
+    }
+
+    public function store(Request $request){
+        $job= new \App\Models\Job();
+        $job->name = $request->input('name');
+        $job->description = $request->input('description');
+        $job->start_date = $request->input('start_date');
+        $job->company_id = $request->input('company_id');
+        $job->save();
+        return redirect('jobs');
     }
 }
