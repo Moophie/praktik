@@ -27,4 +27,8 @@ class ApplicationsController extends Controller
         $application->save();
         return redirect('applications');
     }
+
+    public function filter(Request $request)
+    {
+    }
 }

@@ -9,7 +9,7 @@
 
 <body>
     <h1>Apply for job</h1>
-    <form action="/jobs" method="post">
+    <form action="/applications" method="post">
         {{ csrf_field() }}
 
         <label for="message">Write a motivation letter</label>

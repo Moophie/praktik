@@ -48,3 +48,4 @@ Route::post('/jobs','App\Http\Controllers\JobsController@store');
 
 Route::get('/applications', 'App\Http\Controllers\ApplicationsController@index');
 Route::get('/applications/create', 'App\Http\Controllers\ApplicationsController@create');
+Route::post('/applications','App\Http\Controllers\ApplicationsController@store');
