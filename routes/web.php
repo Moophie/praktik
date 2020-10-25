@@ -41,10 +41,10 @@ Route::get('/settingspro', function(){
     return view('settingspro');
 });
 
-// vacatures
 Route::get('/jobs', 'App\Http\Controllers\JobsController@index');
-Route::get('/jobs/{ job }', 'App\Http\Controllers\JobsController@show');
+Route::get('/jobs/{job}', 'App\Http\Controllers\JobsController@show');
 Route::get('/jobs/create', 'App\Http\Controllers\JobsController@create');
 Route::post('/jobs','App\Http\Controllers\JobsController@store');
 
 Route::get('/applications', 'App\Http\Controllers\ApplicationsController@index');
+Route::get('/applications/create', 'App\Http\Controllers\ApplicationsController@create');
