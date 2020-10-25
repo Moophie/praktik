@@ -12,8 +12,8 @@ class JobsController extends Controller
     }
 
     public function show($job){
-        $job = \App\Models\Job::where('id', $job)->with('applications')->get();
-        dd($job);
+        $data['job'] = \App\Models\Job::where('id', $job)/*->with('applications')*/->first();
+        return view('jobs/show', $data);
     }
 
     public function create(){
