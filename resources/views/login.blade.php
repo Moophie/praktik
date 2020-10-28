@@ -1,32 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts/app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
+@section('title')
+Login
+@endsection
 
-<body>
-    <div class="container">
+@section('content')
+<div class="loginContainer">
+    <div class="">
         <div class="header">
             <h1>Login</h1>
         </div>
     </div>
 
-    <div class="container">
+    <div class="">
         <div class="loginForm">
             <form action="" method="get">
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email">
+                <input class="form-control" type="text" name="email" id="email">
 
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password">
+                <input class="form-control" type="password" name="password" id="password">
 
-                <input type="submit" value="Login">
+                <input class="btn btn-primary" type="submit" value="Login">
             </form>
         </div>
     </div>
-</body>
+</div>
 
-</html>
+@endsection

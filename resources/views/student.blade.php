@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student</title>
-</head>
-<body>
+@extends('layouts/app')
+
+@section('title')
+Student
+@endsection
+
+@section('content')
     <h1>Plain Jane</h1>
     <p>This is a student description!</p>
     <h3>Portfolio</h3>
@@ -19,5 +18,5 @@
     <li>my</li>
     <li>cv</li>
     <li>goes</li>
-</body>
-</html>
+
+@endsection

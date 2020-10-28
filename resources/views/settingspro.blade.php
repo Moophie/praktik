@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company settings</title>
-</head>
-<body>
+@extends('layouts/app')
+
+@section('title')
+Company settings
+@endsection
+
+@section('content')
+
     <h1>Company page settings</h1>
     <h3>Change description</h3>
     <h3>Add vacancies</h3>
-</body>
-</html>
+
+@endsection
