@@ -1,7 +1,6 @@
 body{
     background: rgb(139,131,247);
-    background: linear-gradient( rgba(139,131,247,1) , rgba(92,122,255,1) );
-    background-size: 100%;
+    background: radial-gradient( rgba(139,131,247,1) , rgba(92,122,255,1) );
 }
 .loginContainer{
     width: 50%;
@@ -36,3 +35,12 @@ nav{
     margin-top: 2%;
 }
 
+.wrapper{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 2%;
+}
+
+.wrapper .companyLogo{
+    width: 100px;
+}

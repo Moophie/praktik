@@ -1,7 +1,6 @@
 body {
   background: #8b83f7;
-  background: linear-gradient(#8b83f7, #5c7aff);
-  background-size: 100%;
+  background: radial-gradient(#8b83f7, #5c7aff);
 }
 
 .loginContainer {
@@ -33,5 +32,15 @@ body {
 nav {
   border-radius: 10px;
   margin-top: 2%;
+}
+
+.wrapper {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding: 2%;
+}
+
+.wrapper .companyLogo {
+  width: 100px;
 }
 

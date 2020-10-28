@@ -39,7 +39,7 @@ Homepage
         </div>
     </nav>
 
-    <ul class="vacancies">
+    <ul class="vacancies bg-light">
         <li><a href="/vacancy">Vacancy 1</a></li>
         <li><a href="/vacancy">Vacancy 2</a></li>
         <li><a href="/vacancy">Vacancy 3</a></li>
