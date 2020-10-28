@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ApplicationsController extends Controller
 {
     public function index()
     {
-        $data['applications'] = \DB::table('applications')->get();
+        $data['applications'] = DB::table('applications')->get();
         return view('applications/index', $data);
     }
 
