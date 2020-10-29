@@ -4,20 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\DB;
-
 
 class CompanyController extends Controller
 {
     public function index()
     {
+        // Put all companies from the database in an array
         $data['companies'] = \Illuminate\Support\Facades\DB::table('companies')->get();
+
         return view('companies/index', $data);
     }
 
     public function show($company)
     {
+        // Get the specific company with the given id and put it in an array
         $data['company'] = \App\Models\Company::where('id', $company)->first();
+
         return view('companies/show', $data);
     }
 
@@ -28,14 +30,17 @@ class CompanyController extends Controller
 
     public function store(Request $request)
     {
-        /*$validation = $request->validate([
+        /* $validation = $request->validate([
             'name'  => 'required|max:200',
             'bio'   => 'required'
-        ]);*/
+        ]);
 
-        $request->flash();
+        $request->flash(); */
 
+        // Create new object
         $company = new \App\Models\Company();
+
+        // Set object properties from the user input
         $company->user_id = $request->input('user_id');
         $company->name = $request->input('name');
         $company->city = $request->input('city');
@@ -47,21 +52,13 @@ class CompanyController extends Controller
         $company->description = $request->input('description');
         $company->email = $request->input('email');
         $company->phone = $request->input('phone');
+
+        // Default company rating is 1
+        // TODO: Add "unrated" or NULL option
         $company->rating = 1;
 
-        $lat = $company->geolat;
-        $lng = $company->geolng;
-
-        $nearest_station = DB::select("SELECT name, SQRT(POW(111.2 * (latitude - $lat), 2) + POW(111.2 * ($lng - longitude) * COS(latitude / 57.3), 2)) 
-        AS distance FROM stations ORDER BY distance LIMIT 1");
-
-        $pubtrans_score = 0;
-
-        if ($nearest_station[0]->distance < 2) {
-            $pubtrans_score += 1;
-        }
-
-        $company->pubtrans_score = $pubtrans_score;
+        // Calculate the public transport score
+        $company->pubtrans_score = $company->calcPubTransScore($company->geolat, $company->geolng);
 
         $company->save();
 
