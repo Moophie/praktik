@@ -10,8 +10,9 @@ class Application extends Model
 
     public function job()
     {
+        // Define the relationship to jobs (many-to-one)
         return $this->belongsTo('\App\Models\Job');
     }
 
-    use HasFactory;
+    use HasFactory; 
 }

@@ -10,6 +10,7 @@ class Company extends Model
 {
     public function jobs()
     {
+        // Define the relationship to jobs (one-to-many)
         return $this->hasMany('\App\Models\Job');
     }
 
