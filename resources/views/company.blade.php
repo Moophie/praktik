@@ -1,7 +1,7 @@
 @extends('layouts/app')
 
 @section('title')
-Student
+Company
 @endsection
 
 @section('content')
@@ -35,21 +35,25 @@ Student
         </ul>
     </div>
 </nav>
-<div class="wrapper">
-    <h1>Plain Jane</h1>
-    <p>This is a student description!</p>
-    <h3>Portfolio</h3>
+<div class="wrapper bg-light">
+    <img class="companyLogo" src="images/googleLogo.png" alt="logo google">
+    <h1>Google</h1>
+    <p>Description goes here!</p>
+    <h3>Practical information</h3>
     <img src="https://via.placeholder.com/150" alt="">
     <img src="https://via.placeholder.com/150" alt="">
     <img src="https://via.placeholder.com/150" alt="">
-    <h3>CV</h3>
-    <li>this</li>
-    <li>is</li>
-    <li>where</li>
-    <li>my</li>
-    <li>cv</li>
-    <li>goes</li>
 
+    <h3>Internships</h3>
+    <li>please</li>
+    <li>apply</li>
+    <li>we</li>
+    <li>need</li>
+    <li>interns</li>
+
+    <h3>Reviews</h3>
+    <article>Their coffee tastes like dirt, beautiful campus though!</article>
+    <p>- John Doe</p>
 </div>
 
 @endsection

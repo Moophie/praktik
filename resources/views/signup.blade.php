@@ -1,48 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts/app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-</head>
+@section('title')
+    Sign up
+@endsection
 
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Signup</h1>
+@section('content')
+    <div class="signUpContainer">
+        <div class="container">
+            <div class="header">
+                <h1>Signup</h1>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="loginForm">
+                <form action="" method="post">
+                    {{ csrf_field() }}
+                    <label for="firstname">First name</label>
+                    <input class="form-control" type="text" name="firstname" id="firstname">
+
+                    <label for="lastname">Last name</label>
+                    <input class="form-control" type="text" name="lastname" id="lastname">
+
+                    <label for="email">Email</label>
+                    <input class="form-control" type="text" name="email" id="email">
+
+                    <label for="password">Password</label>
+                    <input class="form-control" type="password" name="password" id="password">
+
+                    <label for="type">Student or company?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="type" id="student" value="student">
+                        <label class="form-check-label" for="student">
+                            Student
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="type" id="company" value="company">
+                        <label class="form-check-label" for="company">
+                            Company
+                        </label>
+                    </div>
+
+                    <label for="confirmPassword">Confirm password</label>
+                    <input class="form-control" type="password" name="confirmPassword" id="password">
+
+                    <input class="btn btn-primary" type="submit" value="Signup">
+                </form>
+            </div>
         </div>
     </div>
 
-    <div class="container">
-        <div class="loginForm">
-            <form action="" method="post">
-                {{ csrf_field() }}
-                <label for="firstname">First name</label>
-                <input type="text" name="firstname" id="firstname">
-                <br>
-                <label for="lastname">Last name</label>
-                <input type="text" name="lastname" id="lastname">
-                <br>
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email">
-                <br>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password">
-                <br>
-                <label for="confirmPassword">Confirm password</label>
-                <input type="password" name="confirmPassword" id="password">
-                <br>
-                <label for="type">Student or company?</label><br>
-                <input type="radio" name="type" id="student" value="student">
-                <label for="student">Student</label><br>
-                <input type="radio" name="type" id="company" value="company">
-                <label for="company">Company</label>
-                <br>
-                <input type="submit" value="Signup">
-            </form>
-        </div>
-    </div>
-</body>
 
-</html>
+@endsection
