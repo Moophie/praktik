@@ -37,7 +37,6 @@ class CompanyController extends Controller
 
         $request->flash(); */
 
-        // Create new object
         $company = new \App\Models\Company();
 
         // Set object properties from the user input

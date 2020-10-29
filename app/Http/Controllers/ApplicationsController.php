@@ -22,14 +22,12 @@ class ApplicationsController extends Controller
 
     public function store(Request $request)
     {
-        // Create new object
         $application = new \App\Models\Application();
 
         // Set object properties from the user input
         $application->job_id = $request->input('job_id');
         $application->user_id = $request->input('user_id');
         $application->message = $request->input('message');
-
         // Set default label (new)
         $application->label_id = "1";
 
