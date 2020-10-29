@@ -14,7 +14,6 @@ class StationsSeeder extends Seeder
      */
     public function run()
     {
-        //
         $stations = Http::get("https://api.irail.be/stations/?format=json")->json();
         foreach ($stations['station'] as $s) {
             $station = new \App\Models\Station();

@@ -13,6 +13,8 @@ class LabelsSeeder extends Seeder
      */
     public function run()
     {
+        // Add defined labels to the database
+
         $label = new \App\Models\Label();
         $label->name = "new";
         $label->description = "Default label for all incoming applications.";

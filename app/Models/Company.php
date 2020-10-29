@@ -15,7 +15,7 @@ class Company extends Model
     }
 
     // Calculate the public transport score
-    function calcPubTransScore($lat, $lng)
+    public function calcPubTransScore($lat, $lng)
     {
         // Query the database and get the closest station from the list
         // The results are ordered by distance in kilometers
