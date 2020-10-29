@@ -18,9 +18,9 @@ Route::get('/', function () {
     return view('index');
 });
 
+// All routes related to login and signup
 Route::get('/login', 'App\Http\Controllers\UserController@login');
 Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
-
 Route::get('/signup', 'App\Http\Controllers\UserController@signup');
 Route::post('/signup', 'App\Http\Controllers\UserController@handleSignup');
 
@@ -28,6 +28,7 @@ Route::get('/student', function () {
     return view('student');
 });
 
+// All routes related to companies
 Route::get('/companies', 'App\Http\Controllers\CompanyController@index');
 Route::get('/companies/create', 'App\Http\Controllers\CompanyController@create');
 Route::post('/companies', 'App\Http\Controllers\CompanyController@store');
@@ -42,11 +43,13 @@ Route::get('/settingspro', function () {
     return view('settingspro');
 });
 
+// All routes related to jobs
 Route::get('/jobs', 'App\Http\Controllers\JobsController@index');
 Route::get('/jobs/{job}', 'App\Http\Controllers\JobsController@show');
 Route::get('/jobs/create', 'App\Http\Controllers\JobsController@create');
-Route::post('/jobs','App\Http\Controllers\JobsController@store');
+Route::post('/jobs', 'App\Http\Controllers\JobsController@store');
 
+// All routes related to applications
 Route::get('/applications', 'App\Http\Controllers\ApplicationsController@index');
 Route::get('/applications/create', 'App\Http\Controllers\ApplicationsController@create');
-Route::post('/applications','App\Http\Controllers\ApplicationsController@store');
+Route::post('/applications', 'App\Http\Controllers\ApplicationsController@store');
