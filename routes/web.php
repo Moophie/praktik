@@ -28,6 +28,10 @@ Route::get('/student', function () {
     return view('student');
 });
 
+// All routes related to student settings
+Route::post('/upload', 'App\Http\Controllers\UserController@uploadSettings');
+Route::get('/dribbble', 'App\Http\Controllers\UserController@getDribbbleShots');
+
 // All routes related to companies
 Route::get('/companies', 'App\Http\Controllers\CompanyController@index');
 Route::get('/companies/create', 'App\Http\Controllers\CompanyController@create');
