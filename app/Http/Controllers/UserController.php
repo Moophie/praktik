@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
@@ -67,5 +68,17 @@ class UserController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function getDribbbleShots()
+    {
+        // $url = "https://api.dribbble.com/v2/user/shots?access_token=" . env('DRIBBBLE_ACCESS_TOKEN');
+        // $response = Http::get($url)->json();
+        // dd($response);
+
+        return Http::get('https://dribbble.com/oauth/authorize', [
+            'client_id' => env('DRIBBBLE_CLIENT_ID'),
+            'redirect_uri' => 'http://praktik.crabdance.com/'
+        ]);
     }
 }

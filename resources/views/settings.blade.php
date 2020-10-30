@@ -24,7 +24,8 @@
     </form>
 
     <h3>Portfolio</h3>
-    <p>Add more items to your portfolio</p>
+    <a href="/dribbble" class="button">Import shots from Dribbble</a>
+
 </body>
 
 </html>
