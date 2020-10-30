@@ -41,7 +41,7 @@ jobs
         </ul>
     </div>
 </nav>
-<div class="jobsWrapper bg-light">
+<div class="Wrapper bg-light">
     <h1>All jobs</h1>
     <ul class="list-group list-group-flush">
         @foreach( $jobs as $job )
