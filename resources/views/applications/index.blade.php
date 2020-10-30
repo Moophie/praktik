@@ -1,13 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts/app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Applications</title>
-</head>
+@section('title')
+Student settings
+@endsection
 
-<body>
+@section('content')
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <img class="navbar-brand" id="menuLogo" src="images/logo.png" alt="logo">
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="/applications/create">applications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <h1>Applications</h1>
     <label for="search">Search by name</label>
     <input type="text" name="search" id="search">
@@ -29,6 +42,4 @@
     <p>{{ $app->message }}</p>
     <h5>Label {{ $app->label_id }}</h5>
     @endforeach
-</body>
-
-</html>
+    @endsection

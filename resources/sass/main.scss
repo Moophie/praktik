@@ -31,7 +31,7 @@ body{
 }
 
 nav{
-    border-radius: 10px;
+    border-radius: 50px;
     margin-top: 2%;
 }
 
@@ -44,3 +44,67 @@ nav{
 .wrapper .companyLogo{
     width: 100px;
 }
+
+.Vacancy{
+    padding: 2%;
+    margin: 2% 0;
+}
+
+.sidenav {
+
+    width: 220px;
+    position: absolute;
+    z-index: 1;
+    margin-top: 1%;
+    background-color: #1E1B18;
+    overflow-x: hidden;
+    padding: 20px 0px;
+  }
+  
+  .sidenav .sideWrapper {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    
+    color: #818181;
+    display: block;
+  }
+
+.vacancyWrapper{
+    margin-left: 240px;
+    padding: 0px 10px;
+    margin-top: 2%;
+  }
+
+.vacancyWrapper h3{
+    color: white;
+    text-decoration: underline;
+    
+}
+
+  .footerMain{
+    margin-left: 240px;
+    padding: 0px 10px;
+  }
+  
+  .form-check-label{
+      color: white;
+  }
+  h4{
+      color: white;
+  }
+
+  .jobsWrapper{
+      margin-top: 2%;
+      padding: 2%;
+  
+  }
+
+  .footerLink{
+ 
+      margin: 2% 0%;
+  }
+
+  .studentWrapper{
+      padding: 2%;
+      margin: 2% 0%;
+  }
