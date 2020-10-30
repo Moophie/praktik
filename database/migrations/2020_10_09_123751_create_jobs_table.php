@@ -13,13 +13,12 @@ class CreateJobsTable extends Migration
      */
     public function up()
     {
-        //
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description');
             $table->date('start_date');
-            $table->tinyInteger('company_id');
+            $table->integer('company_id');
             $table->timestamps();
         });
     }

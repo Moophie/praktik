@@ -13,13 +13,12 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        //
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->text('content');
             $table->float('rating');
-            $table->tinyInteger('user_id');
-            $table->tinyInteger('company_id');
+            $table->integer('user_id');
+            $table->integer('company_id');
             $table->timestamps();
         });
     }
