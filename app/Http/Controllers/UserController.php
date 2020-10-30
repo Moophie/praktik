@@ -20,6 +20,12 @@ class UserController extends Controller
     {
         $user = new \App\Models\User();
 
+        // check if both password are the same
+        if ($request->input('password') != $request->input('confirmPassword')) {
+            $request->session()->flash('error', 'Passwords are not the same');
+            return view('signup');
+        }
+
         // Set object properties from the user input
         $user->firstname = $request->input('firstname');
         $user->lastname = $request->input('lastname');
