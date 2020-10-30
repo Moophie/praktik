@@ -57,9 +57,10 @@ class UserController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (Auth::attempt($credentials)) {
-            // Redirect
+            return redirect('/');
         };
 
+        $request->session()->flash('error', 'Something went wrong');
         return view('login');
     }
 
