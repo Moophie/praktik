@@ -19,7 +19,7 @@
 
         <div class="form-group">
             <label for="name">user_id</label>
-            <input value="3" type="text" class="form-control" id="user_id" name="user_id" >
+            <input value="3" type="text" class="form-control" id="user_id" name="user_id">
         </div>
 
         <div class="form-group">
@@ -71,7 +71,6 @@
             <label for="phone">Phone</label>
             <input type="tel" class="form-control" id="phone" name="phone">
         </div>
-
 
         <button type="submit" class="btn btn-primary">Save Company</button>
     </form>

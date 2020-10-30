@@ -3,22 +3,23 @@
 $lat = $company->geolat;
 $lng = $company->geolng;
 
-$nearest_station = DB::select("SELECT name, SQRT(POW(111.2 * (latitude - $lat), 2) + POW(111.2 * ($lng - longitude) * COS(latitude / 57.3), 2)) 
+$nearest_station = DB::select("SELECT name, SQRT(POW(111.2 * (latitude - $lat), 2) + POW(111.2 * ($lng - longitude) *
+COS(latitude / 57.3), 2))
 AS distance FROM stations ORDER BY distance LIMIT 1");
-
 ?>
 
+@extends('layouts/app')
 
-<!DOCTYPE html>
-<html lang="en">
+@section('title')
+    {{ $company->name }}
+@endsection
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $company->name }}</title>
-</head>
+@section('content')
 
-<body>
+    @component('components/navbar')
+
+    @endcomponent
+
     <h1>{{ $company->name }}</h1>
     <h3>{{ $company->city }}</h3>
     <h5>{{ $company->address }}</h5>
@@ -46,6 +47,5 @@ AS distance FROM stations ORDER BY distance LIMIT 1");
     <h3>{{ $company->pubtrans_score }}/3</h3>
     <h3>Nearest Station</h3>
     {{ $nearest_station[0]->name }}
-</body>
-
-</html>
+    
+@endsection
