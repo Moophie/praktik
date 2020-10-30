@@ -36,7 +36,12 @@ Student settings
     </div>
 </nav>
 <h1>Profile settings</h1>
-This is where you can make changes to your profile!
+@if (Auth::check())
+<h3>Hello {{ Auth::user()->firstname }}!</h3>
+@else
+<div class="alert alert-warning">Please log in</div>
+@endif
+<p>This is where you can make changes to your profile!</p>
 
 <form action="/upload" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
@@ -44,12 +49,13 @@ This is where you can make changes to your profile!
     <label for="image">Profile picture</label><br>
     <input type="file" name="image">
     <br>
+    <br>
     <label for="cv">CV</label><br>
     <input type="file" name="cv">
-    <br>
+    <br><br>
     <input type="submit" value="Upload">
 </form>
-
+<br>
 <h3>Portfolio</h3>
 <a href="/dribbble" class="button">Import shots from Dribbble</a>
 
