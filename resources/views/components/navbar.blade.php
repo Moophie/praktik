@@ -28,9 +28,18 @@
             <li class="nav-item">
                 <a class="nav-link" href="/applications">Applications</a>
             </li>
+            @if (Auth::check())
+                <li class="nav-item" style="position:absolute; right: 20px;">
+                    <p class="nav-link">{{ Auth::user()->firstname }}</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Log out</a>
+                </li>
+            @else
             <li class="nav-item">
-                <a class="nav-link" href="#">Log out</a>
+                <a class="nav-link" href="/login">Log in</a>
             </li>
+            @endif
         </ul>
     </div>
 </nav>
