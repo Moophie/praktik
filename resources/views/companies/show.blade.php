@@ -19,33 +19,30 @@ AS distance FROM stations ORDER BY distance LIMIT 1");
     @component('components/navbar')
 
     @endcomponent
+    <div class="wrapper bg-light">
+        <h1>{{ $company->name }}</h1>
+        <h3>{{ $company->city }}</h3>
+        <h5>{{ $company->address }}</h5>
+        <img src="{{ $company->logo }}" alt="Company logo">
+        <br>
+        <br>
+        
+        <h3 class="clear-both">Description</h3>
+        <p>{{ $company->description }}</p>
 
-    <h1>{{ $company->name }}</h1>
-    <h3>{{ $company->city }}</h3>
-    <h5>{{ $company->address }}</h5>
-    <img src="{{ $company->logo }}" alt="">
-    <p>{{ $company->description }}</p>
-    <p>{{ $company->website }}</p>
+        <!-- <h3>Internships</h3> -->
 
-    <h3>Internships</h3>
-    <li>please</li>
-    <li>apply</li>
-    <li>we</li>
-    <li>need</li>
-    <li>interns</li>
+        <h3>Rating</h3>
+        <p>{{ $company->rating }}/5</p>
 
-    <h3>Rating</h3>
-    <h3>{{ $company->rating }}/5</h3>
-    <article>Their coffee tastes like dirt, beautiful campus though!</article>
-    <p>- John Doe</p>
+        <h3>Contact</h3>
+        <p>Website: {{ $company->website }}</p>
+        <p>Email: {{ $company->email }}</p>
+        <p>Phone: {{ $company->phone }}</p>
 
-    <h3>Contact</h3>
-    <p>{{ $company->email }}</p>
-    <p>{{ $company->phone }}</p>
-
-    <h3>Accessibility</h3>
-    <h3>{{ $company->pubtrans_score }}/3</h3>
-    <h3>Nearest Station</h3>
-    {{ $nearest_station[0]->name }}
-    
+        <h3>Accessibility</h3>
+        <p>{{ $company->pubtrans_score }}/3</p>
+        <h3>Nearest Station</h3>
+        <p>{{ $nearest_station[0]->name }}</p>
+    </div>
 @endsection

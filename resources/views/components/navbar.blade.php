@@ -16,9 +16,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/settings">Student settings</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="/settingspro">Professional settings</a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link" href="/companies">Companies</a>
             </li>
