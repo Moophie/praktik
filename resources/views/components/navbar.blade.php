@@ -38,6 +38,7 @@
             @else
             <li class="nav-item">
                 <a class="nav-link" href="/login">Log in</a>
+                <a class="nav-link" href="/signup">Signup</a>
             </li>
             @endif
         </ul>

@@ -49,8 +49,8 @@ Route::get('/settingspro', function () {
 
 // All routes related to jobs
 Route::get('/jobs', 'App\Http\Controllers\JobsController@index');
-Route::get('/jobs/{job}', 'App\Http\Controllers\JobsController@show');
 Route::get('/jobs/create', 'App\Http\Controllers\JobsController@create');
+Route::get('/jobs/{job}', 'App\Http\Controllers\JobsController@show');
 Route::post('/jobs', 'App\Http\Controllers\JobsController@store');
 
 // All routes related to applications

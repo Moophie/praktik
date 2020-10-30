@@ -1,3 +1,24 @@
+<?php
+
+$parameters = "WHERE 1=1";
+
+if(!empty($_GET)){
+    if(!empty($_GET['rating'])){
+        $parameters = $parameters . " AND companies.rating >= " . $_GET['rating'];
+    }
+    if(!empty($_GET['pubtrans_score'])){
+        $parameters = $parameters . " AND companies.pubtrans_score >= " . $_GET['pubtrans_score'];
+    }
+    if(!empty($_GET['start_date'])){
+        $parameters = $parameters . " AND jobs.start_date > '" . $_GET['start_date'] . "'";
+    }
+}
+
+$query = "SELECT jobs.*, companies.name AS compname, companies.rating, companies.pubtrans_score FROM jobs
+INNER JOIN companies ON jobs.company_id = companies.id " . $parameters ." LIMIT 10";
+
+$jobs = DB::select($query); ?>
+
 @extends('layouts/app')
 
 @section('title')
@@ -11,122 +32,37 @@
     @endcomponent
 
     <div class="sidenav">
-        <div class="sideWrapper">
+        <div class="sideWrapper" style="color:white">
             <h3>Filters</h3>
-            <form action="">
-                <h4>Title</h4>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
+            <form method="GET">
+                <div class="form-group">
+                    <label for="rating">Rating (1-5)</label>
+                    <input type="range" id="rating" class="form-control" name="rating" min="1" max="5" value="1">
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
+                <div class="form-group">
+                    <label for="pubtrans_score">Public transport (1-3)</label>
+                    <input type="range" id="pubtrans_score" class="form-control" name="pubtrans_score" min="1" max="3" value="1">
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
+                <div class="form-group">
+                    <label for="start_date">Start date</label>
+                    <input type="date" id="start_date" class="form-control" name="start_date">
                 </div>
+                <input type="submit" class="btn btn-primary" value="Filter">
             </form>
-
-            <form action="">
-                <h4>Title</h4>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-            </form>
-
-            <form action="">
-                <h4>Title</h4>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Default checkbox
-                    </label>
-                </div>
-            </form>
-            <button class="btn btn-primary">Save Filter</button>
-
-
         </div>
-
-
     </div>
 
     <div class="vacancyWrapper">
-        <h3>Internship vacancies</h3>
-        <div class="Vacancy bg-light">
-            <h4>Stagiar developer gezocht</h4>
-            <article>Looking for an enthousiastic Javascript developer! Yada yada</article>
-            <img src="https://via.placeholder.com/150" alt="">
-            <img src="https://via.placeholder.com/150" alt="">
-            <img src="https://via.placeholder.com/150" alt="">
-        </div>
-        <div class="Vacancy bg-light">
-            <h4>Stagiar developer gezocht</h4>
-            <article>Looking for an enthousiastic Javascript developer! Yada yada</article>
-            <img src="https://via.placeholder.com/150" alt="">
-            <img src="https://via.placeholder.com/150" alt="">
-            <img src="https://via.placeholder.com/150" alt="">
-        </div>
-        <div class="Vacancy bg-light">
-            <h4>Stagiar developer gezocht</h4>
-            <article>Looking for an enthousiastic Javascript developer! Yada yada</article>
-            <img src="https://via.placeholder.com/150" alt="">
-            <img src="https://via.placeholder.com/150" alt="">
-            <img src="https://via.placeholder.com/150" alt="">
-        </div>
-    </div>
-    <footer class="footerMain">
-        <div class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <div class="bg-light">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/signup">Signup</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
-                        </li>
-                    </div>
-                </ul>
+
+        <h1>Internship vacancies</h1>
+        @foreach ($jobs as $job)
+            <div class="Vacancy bg-light">
+                <h3 style="color:black">{{ $job->name }}</h3>
+                <h5>Company: {{ $job->compname }}<span style="font-size:0.7em" class="float-right">Rating: {{ $job->rating }}</span></h5>
+                <article>{{ $job->description }}</article>
+                <br>
+                <p>Starts on: {{ $job->start_date }}</p>
             </div>
-        </div>
-    </footer>
-
-
-
+        @endforeach
+    </div>
 @endsection
