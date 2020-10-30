@@ -20,6 +20,13 @@ class UserController extends Controller
     {
         $user = new \App\Models\User();
 
+        // check if email is unique
+        $email = $user::where('email', $request->input('email'))->first();
+        if ($email) {
+            $request->session()->flash('error', 'Email is already in use');
+            return view('signup');
+        }
+
         // check if both password are the same
         if ($request->input('password') != $request->input('confirmPassword')) {
             $request->session()->flash('error', 'Passwords are not the same');
