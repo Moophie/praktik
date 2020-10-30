@@ -1,31 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts/app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student settings</title>
-</head>
+@section('title')
+Student settings
+@endsection
 
-<body>
-    <h1>Profile settings</h1>
-    This is where you can make changes to your profile!
+@section('content')
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <img class="navbar-brand" id="menuLogo" src="images/logo.png" alt="logo">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/signup">Signup</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/settings">Student settings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/settingspro">Professional settings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/company">Company profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/student">Student profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Log out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<h1>Profile settings</h1>
+This is where you can make changes to your profile!
 
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        {{ csrf_field() }}
+<form action="/upload" method="post" enctype="multipart/form-data">
+    {{ csrf_field() }}
 
-        <label for="image">Profile picture</label><br>
-        <input type="file" name="image">
-        <br>
-        <label for="cv">CV</label><br>
-        <input type="file" name="cv">
-        <br>
-        <input type="submit" value="Upload">
-    </form>
+    <label for="image">Profile picture</label><br>
+    <input type="file" name="image">
+    <br>
+    <label for="cv">CV</label><br>
+    <input type="file" name="cv">
+    <br>
+    <input type="submit" value="Upload">
+</form>
 
-    <h3>Portfolio</h3>
-    <a href="/dribbble" class="button">Import shots from Dribbble</a>
+<h3>Portfolio</h3>
+<a href="/dribbble" class="button">Import shots from Dribbble</a>
 
-</body>
-
-</html>
+@endsection

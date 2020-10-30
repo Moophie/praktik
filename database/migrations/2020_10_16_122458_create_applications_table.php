@@ -19,6 +19,7 @@ class CreateApplicationsTable extends Migration
             $table->integer('user_id');
             $table->text('message');
             $table->integer('label_id');
+            $table->timestamps();
         });
     }
 

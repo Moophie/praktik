@@ -1,30 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts/app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-</head>
+@section('title')
+Homepage
+@endsection
 
-<body>
-    <h1>Homepage</h1>
+@section('content')
+<h1>Homepage</h1>
+<div class="container">
 
-    <ul class="vacancies">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <img class="navbar-brand" id="menuLogo" src="images/logo.png" alt="logo">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Signup</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/settings">Student settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/settingspro">Professional settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/companies">Companies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/student">Student profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="vacancies bg-light">
         <li><a href="/vacancy">Vacancy 1</a></li>
         <li><a href="/vacancy">Vacancy 2</a></li>
         <li><a href="/vacancy">Vacancy 3</a></li>
     </ul>
+</div>
 
-    <ul>
-        <h3>Test links</h3>
-        <li><a href="/signup">Signup</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/settings">Student settings</a></li>
-        <li><a href="/settingspro">Professional settings</a></li>
-        <li><a href="/company">Company profile</a></li>
-        <li><a href="/student">Student profile</a></li>
-    </ul>
-</body>
-
-</html>
+@endsection
