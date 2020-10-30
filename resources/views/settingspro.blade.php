@@ -9,13 +9,16 @@ Company settings
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="/index.php"><img class="navbar-brand" id="menuLogo" src="images/logo.png" alt="logo"></a>
+                <a href="/"><img class="navbar-brand" id="menuLogo" src="images/logo.png" alt="logo"></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/signup">Signup</a>
+                <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
+                <a class="nav-link" href="/jobs">jobs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/student">Student</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/settings">Student settings</a>
@@ -24,10 +27,13 @@ Company settings
                 <a class="nav-link" href="/settingspro">Professional settings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/company">Company profile</a>
+                <a class="nav-link" href="/companies">Companies</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/student">Student profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/applications">Applications</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Log out</a>
@@ -35,9 +41,13 @@ Company settings
         </ul>
     </div>
 </nav>
-<h1>Company page settings</h1>
-<h3>Change description</h3>
-<h3>Add vacancies</h3>
-<a href="/newjob">Add new job listing</a>
+
+<div class="Wrapper bg-light">
+    <h1>Company page settings</h1>
+    <h3>Change description</h3>
+    <h3>Add vacancies</h3>
+    <a href="/newjob">Add new job listing</a>
+
+</div>
 
 @endsection

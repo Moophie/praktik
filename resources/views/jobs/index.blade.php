@@ -33,7 +33,7 @@ jobs
                 <a class="nav-link" href="/student">Student profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/companies">Student profile</a>
+                <a class="nav-link" href="/applications">Applications</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Log out</a>

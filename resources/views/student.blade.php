@@ -33,7 +33,7 @@ Student
                 <a class="nav-link" href="/student">Student profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/companies">Student profile</a>
+                <a class="nav-link" href="/applications">Applications</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Log out</a>
@@ -41,7 +41,7 @@ Student
         </ul>
     </div>
 </nav>
-<div class="studentWrapper bg-light">
+<div class="Wrapper bg-light">
     <h1>Plain Jane</h1>
     <p>This is a student description!</p>
     <h3>Portfolio</h3>
