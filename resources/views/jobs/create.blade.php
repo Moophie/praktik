@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts/app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New job</title>
-</head>
+@section('title')
+    Create job
+@endsection
 
-<body>
+@section('content')
+
+    @component('components/navbar')
+
+    @endcomponent
+
     <h1>Add new job listing</h1>
     <form action="/jobs" method="post">
         {{ csrf_field() }}
@@ -32,6 +34,5 @@
 
         <input type="submit" value="Submit">
     </form>
-</body>
 
-</html>
+@endsection

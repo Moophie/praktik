@@ -22,7 +22,6 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
-            //
             'content' => $this->faker->realText(200),
             'rating' => $this->faker->numberBetween($min = 1, $max = 5),
             'user_id' => $this->faker->numberBetween($min = 1, $max = 4),
