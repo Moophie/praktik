@@ -1,104 +1,99 @@
-body{
-    background: rgb(139,131,247);
-    background: radial-gradient( rgba(139,131,247,1) , rgba(92,122,255,1) );
+body {
+    background: rgb(139, 131, 247);
+    background: radial-gradient(rgba(139, 131, 247, 1), rgba(92, 122, 255, 1));
 }
-.loginContainer{
+.loginContainer {
     width: 50%;
     background-color: #fff;
     margin: 250px auto;
     padding: 2%;
-
 }
 
-.loginContainer .btn{
+.loginContainer .btn {
     margin-top: 5%;
 }
 
-.signUpContainer{
+.signUpContainer {
     width: 50%;
     background-color: #fff;
     margin: 250px auto 0;
     padding: 2%;
-
 }
 
-.signUpContainer .btn{
+.signUpContainer .btn {
     margin-top: 5%;
 }
 
-#menuLogo{
+#menuLogo {
     width: 70px;
 }
 
-nav{
+nav {
     border-radius: 50px;
     margin-top: 2%;
 }
 
-.wrapper{
+.wrapper {
     margin-top: 2%;
     margin-bottom: 2%;
     padding: 2%;
 }
 
-.wrapper .companyLogo{
+.wrapper .companyLogo {
     width: 100px;
 }
 
-.Vacancy{
+.Vacancy {
     padding: 2%;
     margin: 2% 0;
 }
 
 .sidenav {
-
     width: 220px;
     position: absolute;
     z-index: 1;
     margin-top: 1%;
-    background-color: #1E1B18;
+    background-color: #1e1b18;
     overflow-x: hidden;
     padding: 20px 0px;
-  }
-  
-  .sidenav .sideWrapper {
+}
+
+.sidenav .sideWrapper {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    
+
     color: #818181;
     display: block;
-  }
+}
 
-.vacancyWrapper{
+.vacancyWrapper {
     margin-left: 240px;
     padding: 0px 10px;
     margin-top: 2%;
-  }
-
-.vacancyWrapper h3{
-    color: white;
-    text-decoration: underline;
-    
 }
 
-  .footerMain{
+.vacancyWrapper h3 {
+    color: white;
+    text-decoration: underline;
+}
+
+.footerMain {
     margin-left: 240px;
     padding: 0px 10px;
-  }
-  
-  .form-check-label{
-      color: white;
-  }
-  h4{
-      color: white;
-  }
+}
 
-  .footerLink{
- 
-      margin: 2% 0%;
-  }
+.form-check-label {
+    color: white;
+}
+h4 {
+    color: white;
+}
 
-  .Wrapper{
-      padding: 2%;
-      margin: 2% 0%;
-  }
+.footerLink {
+    margin: 2% 0%;
+}
+
+.Wrapper {
+    padding: 2%;
+    margin: 2% 0%;
+}
