@@ -94,13 +94,6 @@ class UserController extends Controller
 
     public function getDribbbleShots()
     {
-        // $url = "https://api.dribbble.com/v2/user/shots?access_token=" . env('DRIBBBLE_ACCESS_TOKEN');
-        // $response = Http::get($url)->json();
-        // dd($response);
-
-        return Http::get('https://dribbble.com/oauth/authorize', [
-            'client_id' => env('DRIBBBLE_CLIENT_ID'),
-            'redirect_uri' => 'http://praktik.crabdance.com/'
-        ]);
+        
     }
 }
