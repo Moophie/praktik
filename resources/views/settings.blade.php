@@ -31,7 +31,11 @@ Student settings
     </form>
     <br>
     <h3>Portfolio</h3>
-    <a href="/dribbble" class="btn btn-primary">Import shots from Dribbble</a>
+    <form class="form-group" action="/dribbble" method="post">
+        <label for="url">Dribbble URL</label>
+        <input class="form-control" type="text" name="url" id="url" placeholder="Please give your Dribbble-profile URL">
+        <input type="submit" class="btn btn-primary" value="Get portfolio">
+    </form>
 </div>
 
 @endsection
