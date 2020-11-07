@@ -96,11 +96,17 @@ class UserController extends Controller
     public function getDribbbleShots(Request $request)
     {
         $url = $request->input('url');
+        DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->update(['dribbble_url' => $url],);
         $crawler = Goutte::request('GET', $url);
         $shots = $crawler->filter('.shot-thumbnail')->count();
         for ($i = 0; $i < $shots; $i++) {
-            $images[] = $crawler->filter('figure > img')->attr("src") . "\n";
+            $images[] = $crawler->filter('figure > img')->attr("src");
         };
         var_dump($images);
+        DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->update(['portfolio' => $images],);
     }
 }
