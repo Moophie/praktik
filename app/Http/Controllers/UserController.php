@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
+use Goutte;
 
 class UserController extends Controller
 {
@@ -92,8 +93,14 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function getDribbbleShots()
+    public function getDribbbleShots(Request $request)
     {
-        
+        $url = $request->input('url');
+        $crawler = Goutte::request('GET', $url);
+        $shots = $crawler->filter('.shot-thumbnail')->count();
+        for ($i = 0; $i < $shots; $i++) {
+            $images[] = $crawler->filter('figure > img')->attr("src") . "\n";
+        };
+        var_dump($images);
     }
 }
