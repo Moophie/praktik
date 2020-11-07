@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('type');
             $table->string('profilepic')->nullable();
             $table->string('cv')->nullable();
+            $table->string('dribbble_url')->nullable();
+            $table->string('portfolio')->nullable();
             $table->timestamps();
         });
     }
