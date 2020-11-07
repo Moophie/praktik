@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('profilepic')->nullable();
             $table->string('cv')->nullable();
             $table->string('dribbble_url')->nullable();
-            $table->string('portfolio')->nullable();
+            $table->text('portfolio')->nullable();
             $table->timestamps();
         });
     }
