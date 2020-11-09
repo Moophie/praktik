@@ -44,7 +44,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect('signup');
+        return redirect('login');
     }
 
     public function login()
