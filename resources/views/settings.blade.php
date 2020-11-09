@@ -31,11 +31,25 @@ Student settings
     </form>
     <br>
     <h3>Portfolio</h3>
-    <form class="form-group" action="/dribbble" method="post">
+    @if(!Auth::user()->dribbble_url)
+    <form class="form-group" action="/dribbble" method="get">
         <label for="url">Dribbble URL</label>
         <input class="form-control" type="text" name="url" id="url" placeholder="Please give your Dribbble-profile URL">
         <input type="submit" class="btn btn-primary" value="Get portfolio">
     </form>
+    @else
+    <?php
+    $portfolioLinks = (explode(",", Auth::user()->portfolio));
+    var_dump($portfolioLinks);
+    ?>
+    <ol class="portfolio">
+        @foreach($portfolioLinks as $picture)
+        <li class="portfolio-picture">
+            <img src="{{ $picture }}" alt="">
+        </li>
+        @endforeach
+    </ol>
+    @endif
 </div>
 
 @endsection
