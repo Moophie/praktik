@@ -102,7 +102,7 @@ class UserController extends Controller
         $crawler = Goutte::request('GET', $url);
         $shots = $crawler->filter('.shot-thumbnail')->count();
         for ($i = 0; $i < $shots; $i++) {
-            $images[] = $crawler->filter('figure > img')->attr("src");
+            $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
         };
         var_dump($images);
         $images = implode(',', $images);
@@ -110,5 +110,6 @@ class UserController extends Controller
         DB::table('users')
             ->where('id', Auth::user()->id)
             ->update(['portfolio' => $images]);
+        return redirect()->back();
     }
 }
