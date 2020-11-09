@@ -19395,9 +19395,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\luc_m\Documents\webtech adv\praktik\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\luc_m\Documents\webtech adv\praktik\resources\sass\main.scss */"./resources/sass/main.scss");
-module.exports = __webpack_require__(/*! C:\Users\luc_m\Documents\webtech adv\praktik\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\Users\User\Documents\IMD\2020-2021\Semester 1\Webtech\praktik\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\User\Documents\IMD\2020-2021\Semester 1\Webtech\praktik\resources\sass\main.scss */"./resources/sass/main.scss");
+module.exports = __webpack_require__(/*! C:\Users\User\Documents\IMD\2020-2021\Semester 1\Webtech\praktik\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

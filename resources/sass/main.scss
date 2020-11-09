@@ -97,3 +97,12 @@ h4 {
     padding: 2%;
     margin: 2% 0%;
 }
+
+ol.portfolio{
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.portfolio-picture{
+    margin-bottom: 10px;
+}

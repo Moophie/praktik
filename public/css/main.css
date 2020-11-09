@@ -54,7 +54,7 @@ nav {
   position: absolute;
   z-index: 1;
   margin-top: 1%;
-  background-color: #1E1B18;
+  background-color: #1e1b18;
   overflow-x: hidden;
   padding: 20px 0px;
 }
@@ -97,5 +97,15 @@ h4 {
 .Wrapper {
   padding: 2%;
   margin: 2% 0%;
+}
+
+ol.portfolio {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.portfolio-picture {
+  margin-bottom: 10px;
 }
 

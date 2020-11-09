@@ -40,7 +40,7 @@ Student settings
     @else
     <?php
     $portfolioLinks = (explode(",", Auth::user()->portfolio));
-    var_dump($portfolioLinks);
+    // var_dump($portfolioLinks);
     ?>
     <ol class="portfolio">
         @foreach($portfolioLinks as $picture)
