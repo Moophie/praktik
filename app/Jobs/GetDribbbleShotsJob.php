@@ -37,22 +37,24 @@ class GetDribbbleShotsJob implements ShouldQueue
         foreach ($ids as $id) {
             $url = DB::table('users')
                 ->where('id', $id)->value('dribbble_url');
-            var_dump($url);
-            $crawler = Goutte::request('GET', $url);
-            $shots = $crawler->filter('.shot-thumbnail')->count();
-            // var_dump($shots);
-            if ($shots == 1) {
-                $images = $crawler->filter('figure > img')->attr("src");
-            } else {
-                for ($i = 0; $i < $shots; $i++) {
-                    $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
-                };
-                $images = implode(',', $images);
+            // var_dump($url);
+            if ($url) {
+                $crawler = Goutte::request('GET', $url);
+                $shots = $crawler->filter('.shot-thumbnail')->count();
+                // var_dump($shots);
+                if ($shots == 1) {
+                    $images = $crawler->filter('figure > img')->attr("src");
+                } else {
+                    for ($i = 0; $i < $shots; $i++) {
+                        $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
+                    };
+                    $images = implode(',', $images);
+                }
+                // var_dump($images);
+                DB::table('users')
+                    ->where('id', $id)
+                    ->update(['portfolio' => $images]);
             }
-            var_dump($images);
-            DB::table('users')
-                ->where('id', $id)
-                ->update(['portfolio' => $images]);
         };
     }
 }
