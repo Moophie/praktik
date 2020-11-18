@@ -104,9 +104,7 @@ class UserController extends Controller
         for ($i = 0; $i < $shots; $i++) {
             $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
         };
-        var_dump($images);
         $images = implode(',', $images);
-        var_dump($images);
         DB::table('users')
             ->where('id', Auth::user()->id)
             ->update(['portfolio' => $images]);
