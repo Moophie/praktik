@@ -32,19 +32,27 @@ class GetDribbbleShotsJob implements ShouldQueue
      */
     public function handle()
     {
-        $url = DB::table('users')
-            ->where('id', 1)->pluck('dribbble_url');
-        var_dump($url);
-        // Auth::user()->id
-        // $crawler = Goutte::request('GET', $url);
-        // $shots = $crawler->filter('.shot-thumbnail')->count();
-        // for ($i = 0; $i < $shots; $i++) {
-        //     $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
-        // };
-        // $images = implode(',', $images);
-        // var_dump($images);
-        // DB::table('users')
-        //     ->where('id', Auth::user()->id)
-        //     ->update(['portfolio' => $images]);
+        $ids = DB::table('users')->pluck('id');
+        // var_dump($ids);
+        foreach ($ids as $id) {
+            $url = DB::table('users')
+                ->where('id', $id)->value('dribbble_url');
+            var_dump($url);
+            $crawler = Goutte::request('GET', $url);
+            $shots = $crawler->filter('.shot-thumbnail')->count();
+            // var_dump($shots);
+            if ($shots == 1) {
+                $images = $crawler->filter('figure > img')->attr("src");
+            } else {
+                for ($i = 0; $i < $shots; $i++) {
+                    $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
+                };
+                $images = implode(',', $images);
+            }
+            var_dump($images);
+            DB::table('users')
+                ->where('id', $id)
+                ->update(['portfolio' => $images]);
+        };
     }
 }
