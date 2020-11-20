@@ -101,13 +101,15 @@ class UserController extends Controller
             ->update(['dribbble_url' => $url]);
         $crawler = Goutte::request('GET', $url);
         $shots = $crawler->filter('.shot-thumbnail')->count();
-        for ($i = 0; $i < $shots; $i++) {
-            $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
-        };
-        $images = implode(',', $images);
-        DB::table('users')
-            ->where('id', Auth::user()->id)
-            ->update(['portfolio' => $images]);
+        if ($shots > 0) {
+            for ($i = 0; $i < $shots; $i++) {
+                $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
+            };
+            $images = implode(',', $images);
+            DB::table('users')
+                ->where('id', Auth::user()->id)
+                ->update(['portfolio' => $images]);
+        }
         return redirect()->back();
     }
 }

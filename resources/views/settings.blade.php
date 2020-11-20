@@ -37,6 +37,8 @@ Student settings
         <input class="form-control" type="text" name="url" id="url" placeholder="Please give your Dribbble-profile URL">
         <input type="submit" class="btn btn-primary" value="Get portfolio">
     </form>
+    @elseif(!Auth::user()->portfolio)
+    <p>You don't have any portfolio items yet.</p>
     @else
     <?php
     $portfolioLinks = (explode(",", Auth::user()->portfolio));

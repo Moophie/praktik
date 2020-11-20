@@ -10,6 +10,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Goutte;
+use Illuminate\Support\Facades\Log;
 
 class GetDribbbleShotsJob implements ShouldQueue
 {
@@ -32,6 +33,7 @@ class GetDribbbleShotsJob implements ShouldQueue
      */
     public function handle()
     {
+        Log::info("CRON");
         $ids = DB::table('users')->pluck('id');
         // var_dump($ids);
         foreach ($ids as $id) {
@@ -42,18 +44,20 @@ class GetDribbbleShotsJob implements ShouldQueue
                 $crawler = Goutte::request('GET', $url);
                 $shots = $crawler->filter('.shot-thumbnail')->count();
                 // var_dump($shots);
-                if ($shots == 1) {
-                    $images = $crawler->filter('figure > img')->attr("src");
-                } else {
-                    for ($i = 0; $i < $shots; $i++) {
-                        $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
-                    };
-                    $images = implode(',', $images);
+                if ($shots > 0) {
+                    if ($shots == 1) {
+                        $images = $crawler->filter('figure > img')->attr("src");
+                    } else {
+                        for ($i = 0; $i < $shots; $i++) {
+                            $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
+                        };
+                        $images = implode(',', $images);
+                    }
+                    // var_dump($images);
+                    DB::table('users')
+                        ->where('id', $id)
+                        ->update(['portfolio' => $images]);
                 }
-                // var_dump($images);
-                DB::table('users')
-                    ->where('id', $id)
-                    ->update(['portfolio' => $images]);
             }
         };
     }
