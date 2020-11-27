@@ -33,7 +33,6 @@ class GetDribbbleShotsJob implements ShouldQueue
      */
     public function handle()
     {
-        Log::info("CRON");
         $ids = DB::table('users')->pluck('id');
         // var_dump($ids);
         foreach ($ids as $id) {

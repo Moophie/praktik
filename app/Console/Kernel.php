@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('app:get_dribbble_shots')->dailyAt('11:24');
+        $schedule->command('app:get_dribbble_shots')->daily();
     }
 
     /**
