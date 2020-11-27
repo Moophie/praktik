@@ -74,8 +74,7 @@ class UserController extends Controller
                 Storage::delete('/public/images/' . Auth::user()->profilepic);
             }
             $request->image->storeAs('images', $filename, 'public');
-            DB::table('users')
-                ->where('id', Auth::user()->id)
+            \App\Models\User::where('id', Auth::user()->id)
                 ->update(['profilepic' => $filename]);
         }
         // upload cv file
@@ -85,8 +84,7 @@ class UserController extends Controller
                 Storage::delete('/public/files/' . Auth::user()->cv);
             }
             $request->cv->storeAs('files', $filename, 'public');
-            DB::table('users')
-                ->where('id', Auth::user()->id)
+            \App\Models\User::where('id', Auth::user()->id)
                 ->update(['cv' => $filename]);
         }
 
@@ -96,8 +94,7 @@ class UserController extends Controller
     public function getDribbbleShots(Request $request)
     {
         $url = $request->input('url');
-        DB::table('users')
-            ->where('id', Auth::user()->id)
+        \App\Models\User::where('id', Auth::user()->id)
             ->update(['dribbble_url' => $url]);
         $crawler = Goutte::request('GET', $url);
         $shots = $crawler->filter('.shot-thumbnail')->count();
@@ -106,8 +103,7 @@ class UserController extends Controller
                 $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
             };
             $images = implode(',', $images);
-            DB::table('users')
-                ->where('id', Auth::user()->id)
+            \App\Models\User::where('id', Auth::user()->id)
                 ->update(['portfolio' => $images]);
         }
         return redirect()->back();
