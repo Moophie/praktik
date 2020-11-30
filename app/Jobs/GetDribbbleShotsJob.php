@@ -33,11 +33,10 @@ class GetDribbbleShotsJob implements ShouldQueue
      */
     public function handle()
     {
-        $ids = DB::table('users')->pluck('id');
+        $ids = \App\Models\User::pluck('id');
         // var_dump($ids);
         foreach ($ids as $id) {
-            $url = DB::table('users')
-                ->where('id', $id)->value('dribbble_url');
+            $url = \App\Models\User::where('id', $id)->value('dribbble_url');
             // var_dump($url);
             if ($url) {
                 $crawler = Goutte::request('GET', $url);
@@ -53,8 +52,7 @@ class GetDribbbleShotsJob implements ShouldQueue
                         $images = implode(',', $images);
                     }
                     // var_dump($images);
-                    DB::table('users')
-                        ->where('id', $id)
+                    \App\Models\User::where('id', $id)
                         ->update(['portfolio' => $images]);
                 }
             }
