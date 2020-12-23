@@ -29,10 +29,10 @@
 
         @foreach ($applications as $app)
             <a href="/applications/{{ $app->id }}">
-                <h3>User {{ $app->user_id }} for job {{ $app->job_id }}</h3>
+                <h3>{{ $app->user->firstname }} {{ $app->user->lastname }} applied for "{{ $app->job->name }}"</h3>
             </a>
             <p>{{ $app->message }}</p>
-            <h5>Label {{ $app->label_id }}</h5>
+            <h5>label: {{ $app->label->name }}</h5>
         @endforeach
     </div>
 
