@@ -10,9 +10,17 @@ class ApplicationsController extends Controller
     public function index()
     {
         // Put all applications from the database in an array
-        $data['applications'] = DB::table('applications')->get();
+        $data['applications'] = \App\Models\Application::with('user', 'job', 'label')->get();
 
         return view('applications/index', $data);
+    }
+
+    public function show($application)
+    {
+        // Get the specific company with the given id and put it in an array
+        $data['application'] = \App\Models\Application::where('id', $application)->first();
+
+        return view('applications/show', $data);
     }
 
     public function create()
