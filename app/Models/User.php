@@ -39,4 +39,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function applications()
+    {
+        // Define the relationship to applications (many-to-one)
+        return $this->hasMany('\App\Models\Application');
+    }
 }
