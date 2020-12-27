@@ -23,17 +23,17 @@ class ApplicationsController extends Controller
         return view('applications/show', $data);
     }
 
-    public function create()
+    public function create($job)
     {
-        return view('applications/create');
+        return view('applications/create', ['job'=>$job]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $job)
     {
-        $application = new \App\Models\Application();
+        $application = new \App\Models\Application;
 
         // Set object properties from the user input
-        $application->job_id = $request->input('job_id');
+        $application->job_id = $job;
         $application->user_id = $request->input('user_id');
         $application->message = $request->input('message');
         // Set default label (new)
@@ -44,8 +44,8 @@ class ApplicationsController extends Controller
         return redirect('applications');
     }
 
-    public function filter(Request $request)
+    /*public function filter(Request $request)
     {
         // TODO: function that filters out applications and returns the results
-    }
+    }*/
 }

@@ -14,6 +14,8 @@ class Company extends Model
         return $this->hasMany('\App\Models\Job');
     }
 
+    
+
     // Calculate the public transport score
     public function calcPubTransScore($lat, $lng)
     {

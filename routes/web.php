@@ -55,5 +55,5 @@ Route::post('/jobs', 'App\Http\Controllers\JobsController@store');
 
 // All routes related to applications
 Route::get('/applications', 'App\Http\Controllers\ApplicationsController@index');
-Route::get('/applications/create', 'App\Http\Controllers\ApplicationsController@create');
-Route::post('/applications', 'App\Http\Controllers\ApplicationsController@store');
+Route::get('/jobs/{job}/create', 'App\Http\Controllers\ApplicationsController@create');
+Route::post('/applications/{job}', 'App\Http\Controllers\ApplicationsController@store') -> name('applications');
