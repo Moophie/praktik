@@ -9,7 +9,6 @@ class ApplicationsController extends Controller
 {
     public function index()
     {
-        // Put all applications from the database in an array
         $data['applications'] = \App\Models\Application::with('user', 'job', 'label')->get();
 
         return view('applications/index', $data);
@@ -17,8 +16,7 @@ class ApplicationsController extends Controller
 
     public function show($application)
     {
-        // Get the specific company with the given id and put it in an array
-        $data['application'] = \App\Models\Application::where('id', $application)->first();
+        $data['application'] = \App\Models\Application::where('applications.id', $application)->join('users', 'users.id', '=', 'applications.user_id')->first();
 
         return view('applications/show', $data);
     }
