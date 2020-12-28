@@ -16,7 +16,7 @@ class ApplicationsController extends Controller
 
     public function show($application)
     {
-        $data['application'] = \App\Models\Application::where('applications.id', $application)->join('users', 'users.id', '=', 'applications.user_id')->first();
+        $data['application'] = \App\Models\Application::where('applications.id', $application)->with('user')->first();
 
         return view('applications/show', $data);
     }

@@ -58,3 +58,5 @@ Route::get('/applications', 'App\Http\Controllers\ApplicationsController@index')
 Route::get('/applications/{application}', 'App\Http\Controllers\ApplicationsController@show');
 Route::get('/jobs/{job}/create', 'App\Http\Controllers\ApplicationsController@create');
 Route::post('/applications/{job}', 'App\Http\Controllers\ApplicationsController@store') -> name('applications');
+
+Route::post('/label/{application}', 'App\Http\Controllers\LabelsController@put') -> name('labels');

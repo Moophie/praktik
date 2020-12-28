@@ -65,21 +65,23 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
+                <form action="{{ route('labels', ['application' => $application->id]) }}" method="post">
+                    {{ csrf_field() }}
                 <div class="modal-body">
-                    <form action="">
                         <label for="label">Change label</label>
                         <select name="label" id="label">
-                            <option value="new">new</option>
-                            <option value="starred">star</option>
-                            <option value="approved">approve</option>
-                            <option value="declined">decline</option>
+                            <option value="1">new</option>
+                            <option value="2">star</option>
+                            <option value="3">approve</option>
+                            <option value="4">decline</option>
+                            <option value="5">test</option>
                         </select>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
