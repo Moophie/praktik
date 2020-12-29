@@ -19,7 +19,7 @@ class JobsController extends Controller
     {
         // Get the specific job with the given id and put it in an array
         // Optionally show all the applications for it
-        $data['job'] = \App\Models\Job::where('id', $job)/*->with('applications')*/->first();
+        $data['job'] = \App\Models\Job::where('id', $job)->with('company')->first();
 
         return view('jobs/show', $data);
     }
