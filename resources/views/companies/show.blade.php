@@ -1,13 +1,3 @@
-<?php
-
-$lat = $company->geolat;
-$lng = $company->geolng;
-
-$nearest_station = DB::select("SELECT name, SQRT(POW(111.2 * (latitude - $lat), 2) + POW(111.2 * ($lng - longitude) *
-COS(latitude / 57.3), 2))
-AS distance FROM stations ORDER BY distance LIMIT 1");
-?>
-
 @extends('layouts/app')
 
 @section('title')

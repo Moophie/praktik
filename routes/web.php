@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'App\Http\Controllers\JobsController@filterJobs');
 
 // All routes related to signup
 Route::get('/signup', 'App\Http\Controllers\UserController@signup');
