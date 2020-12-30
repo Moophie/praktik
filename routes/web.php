@@ -40,8 +40,8 @@ Route::post('/companies', 'App\Http\Controllers\CompanyController@store');
 Route::post('/companies/getCompanyInfo', 'App\Http\Controllers\CompanyController@getCompanyInfo');
 Route::get('/companies/{company}', 'App\Http\Controllers\CompanyController@show');
 
-Route::get('/settings', function () {
-    return view('settings');
+Route::get('/profile', function () {
+    return view('profile');
 });
 
 Route::get('/settingspro', function () {

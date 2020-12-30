@@ -5,16 +5,10 @@
                 <a href="/"><img class="navbar-brand" id="menuLogo" src="../images/logo.png" alt="logo"></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="/jobs">Jobs</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/student">Student</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/settings">Student settings</a>
+                <a class="nav-link" href="/student">Students</a>
             </li>
             <!-- <li class="nav-item">
                 <a class="nav-link" href="/settingspro">Professional settings</a>
@@ -23,14 +17,11 @@
                 <a class="nav-link" href="/companies">Companies</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/student">Student profile</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="/applications">Applications</a>
             </li>
             @if (Auth::check())
-                <li class="nav-item" style="position:absolute; right: 20px;">
-                    <p class="nav-link">{{ Auth::user()->firstname }}</p>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">{{ Auth::user()->firstname }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Log out</a>

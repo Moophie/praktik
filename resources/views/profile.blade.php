@@ -1,7 +1,7 @@
 @extends('layouts/app')
 
 @section('title')
-Student settings
+Student Profile
 @endsection
 
 @section('content')
