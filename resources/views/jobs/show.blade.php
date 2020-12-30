@@ -1,12 +1,12 @@
 @extends('layouts/app')
 
 @section('title')
-    Jobs
+Jobs
 @endsection
 
 @section('content')
 
-    @component('components/navbar')
+@component('components/navbar')
 
     @endcomponent
     <div class="jobsWrapper bg-light">
@@ -15,8 +15,8 @@
         <p>{{ $job->description }}</p>
         <p>You will start on: {{ $job->start_date }}</p>
 
-        <a href="/applications/create">Apply now</a>
-    </div>
+    <button><a href="{{ '/jobs/' . $job->id . '/create' }}">Apply now</a></button>
+</div>
 
 
 @endsection
