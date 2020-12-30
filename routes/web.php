@@ -18,11 +18,14 @@ Route::get('/', function () {
     return view('index');
 });
 
-// All routes related to login and signup
-Route::get('/login', 'App\Http\Controllers\UserController@login');
-Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
+// All routes related to signup
 Route::get('/signup', 'App\Http\Controllers\UserController@signup');
 Route::post('/signup', 'App\Http\Controllers\UserController@handleSignup');
+
+// Routes related to authentication and sessions (login and logout)
+Route::get('/login', 'App\Http\Controllers\UserController@login');
+Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
+Route::get('/logout', 'App\Http\Controllers\UserController@handleLogout');
 
 Route::get('/student', function () {
     return view('student');

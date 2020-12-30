@@ -65,6 +65,16 @@ class UserController extends Controller
         return view('login');
     }
 
+    public function handleLogout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
     public function uploadSettings(Request $request)
     {
         // upload profile picture

@@ -33,7 +33,7 @@
                     <p class="nav-link">{{ Auth::user()->firstname }}</p>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Log out</a>
+                    <a class="nav-link" href="/logout">Log out</a>
                 </li>
             @else
             <li class="nav-item">
