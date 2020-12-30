@@ -36,7 +36,7 @@
         <h1>Internship vacancies</h1>
         @foreach ($jobs as $job)
             <div class="Vacancy bg-light">
-                <h3 style="color:black">{{ $job->name }}</h3>
+                <a href="/jobs/{{ $job->id }}"><h3 style="color:black">{{ $job->name }}</h3></a>
                 <h5>Company: {{ $job->compname }}<span style="font-size:0.7em" class="float-right">Rating:
                         {{ $job->rating }}</span></h5>
                 <article>{{ $job->description }}</article>

@@ -16,10 +16,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="/companies">Companies</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/applications">Applications</a>
-            </li>
             @if (Auth::check())
+                <li class="nav-item">
+                    <a class="nav-link" href="/applications">Applications</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/profile">{{ Auth::user()->firstname }}</a>
                 </li>
@@ -27,10 +27,12 @@
                     <a class="nav-link" href="/logout">Log out</a>
                 </li>
             @else
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Log in</a>
-                <a class="nav-link" href="/signup">Signup</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Sign up</a>
+                </li>
             @endif
         </ul>
     </div>
