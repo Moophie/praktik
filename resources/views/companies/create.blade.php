@@ -18,7 +18,6 @@
 
     @endcomponent
 
-
     <div class="wrapper bg-light">
         <form method="POST" action="/companies">
             <h1>Your company <button type="submit" class="btn btn-primary float-right">Save Company</button></h1>

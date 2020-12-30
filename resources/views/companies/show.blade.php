@@ -9,6 +9,7 @@
     @component('components/navbar')
 
     @endcomponent
+    
     <div class="wrapper bg-light">
         <h1>{{ $company->name }}</h1>
         <h3>{{ $company->city }}</h3>
@@ -16,7 +17,7 @@
         <img src="{{ $company->logo }}" alt="Company logo">
         <br>
         <br>
-        
+
         <h3 class="clear-both">Description</h3>
         <p>{{ $company->description }}</p>
 
@@ -35,4 +36,5 @@
         <h3>Nearest Station</h3>
         <p>{{ $nearest_station[0]->name }}</p>
     </div>
+
 @endsection

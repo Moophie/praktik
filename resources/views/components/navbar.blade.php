@@ -16,6 +16,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/companies">Companies</a>
             </li>
+
             @if (Auth::check())
                 <li class="nav-item">
                     <a class="nav-link" href="/applications">Applications</a>
@@ -34,6 +35,7 @@
                     <a class="nav-link" href="/signup">Sign up</a>
                 </li>
             @endif
+            
         </ul>
     </div>
 </nav>
