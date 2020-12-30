@@ -53,7 +53,13 @@ class CompanyController extends Controller
         $company->address = $request->input('address');
         $company->geolat = $request->input('geolat');
         $company->geolng = $request->input('geolng');
-        $company->logo = $request->input('logo');
+
+        if ($request->hasFile('logo')) {
+            $filename = "logo_" . $company->name . "_" . $company->address;
+            $request->logo->storeAs('/companies/images', $filename, 'public');
+            $company->logo = $filename;
+        }
+
         $company->website = $request->input('website');
         $company->description = $request->input('description');
         $company->email = $request->input('email');

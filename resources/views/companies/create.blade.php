@@ -19,7 +19,7 @@
     @endcomponent
 
     <div class="wrapper bg-light">
-        <form method="POST" action="/companies">
+        <form method="POST" action="/companies" enctype="multipart/form-data">
             <h1>Your company <button type="submit" class="btn btn-primary float-right">Save Company</button></h1>
             @csrf
 
@@ -65,7 +65,7 @@
             <div class="form-group row">
                 <label for="logo" class="col-sm-2 col-form-label">Logo</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="logo" name="logo">
+                    <input type="file" class="form-control-file" id="logo" name="logo">
                 </div>
             </div>
 
