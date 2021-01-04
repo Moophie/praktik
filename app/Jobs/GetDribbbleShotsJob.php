@@ -46,7 +46,7 @@ class GetDribbbleShotsJob implements ShouldQueue
                     if ($shots == 1) {
                         $images = $crawler->filter('figure > img')->attr("src");
                     } else {
-                        for ($i = 0; $i < $shots; $i++) {
+                        for ($i = 0; $i < 4; $i++) { // 4 most recent pics
                             $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
                         };
                         $images = implode(',', $images);

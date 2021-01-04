@@ -99,7 +99,7 @@ class UserController extends Controller
         $crawler = Goutte::request('GET', $url);
         $shots = $crawler->filter('.shot-thumbnail')->count();
         if ($shots > 0) {
-            for ($i = 0; $i < $shots; $i++) {
+            for ($i = 0; $i < 4; $i++) { // 4 most recent pics
                 $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
             };
             $images = implode(',', $images);
