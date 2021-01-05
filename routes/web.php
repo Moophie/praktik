@@ -25,16 +25,16 @@ Route::get('/login', 'App\Http\Controllers\UserController@login')-> name('login'
 Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
 Route::get('/logout', 'App\Http\Controllers\UserController@handleLogout');
 
-// Student routes
-Route::get('/students', function () {
-    return view('students/index');
+// user routes
+Route::get('/users', function () {
+    return view('users/index');
 })->middleware('auth');
 Route::get('/profile', function () {
-    return view('students/profile');
+    return view('users/profile');
 })->middleware('auth');
-Route::get('/students', 'App\Http\Controllers\UserController@index')->middleware('auth');
-Route::get('/students/{student}', 'App\Http\Controllers\UserController@show')->middleware('auth');
-// All routes related to student settings
+Route::get('/users', 'App\Http\Controllers\UserController@index')->middleware('auth');
+Route::get('/users/{user}', 'App\Http\Controllers\UserController@show')->middleware('auth');
+// All routes related to user settings
 Route::post('/upload', 'App\Http\Controllers\UserController@uploadSettings')->middleware('auth');
 Route::get('/dribbble', 'App\Http\Controllers\UserController@getDribbbleShots')->middleware('auth');
 
