@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
-use Goutte;
+use Goutte\Client;
 
 class UserController extends Controller
 {
@@ -19,18 +20,20 @@ class UserController extends Controller
 
     public function handleSignup(Request $request)
     {
-        $user = new \App\Models\User();
+        $user = new User();
 
         // check if email is unique
         $email = $user::where('email', $request->input('email'))->first();
         if ($email) {
             $request->session()->flash('error', 'Email is already in use');
+
             return view('signup');
         }
 
         // check if both password are the same
         if ($request->input('password') != $request->input('confirmPassword')) {
             $request->session()->flash('error', 'Passwords are not the same');
+
             return view('signup');
         }
 
@@ -41,7 +44,7 @@ class UserController extends Controller
         // Hash the password with BCRYPT
         $user->password = Hash::make($request->input('password'));
         $user->type = $request->input('type');
-
+        $user->profilepic = "placeholder_pp.png";
         $user->save();
 
         return redirect('login');
@@ -56,13 +59,42 @@ class UserController extends Controller
     {
         // Get the user's email and password and put them in an array
         $credentials = $request->only(['email', 'password']);
-
         if (Auth::attempt($credentials)) {
             return redirect('/');
         };
-
         $request->session()->flash('error', 'Something went wrong');
+
         return view('login');
+    }
+
+    public function handleLogout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
+    public function index()
+    {
+        // Put all users from the database in an array
+        $data['users'] = DB::table('users')->get();
+
+        return view('users/index', $data);
+    }
+
+    public function profile()
+    {
+        return view('users/profile');
+    }
+    
+    public function show($user)
+    {
+        // Get the specific company with the given id and put it in an array
+        $data['user'] = User::where('id', $user)->first();
+
+        return view('users/show', $data);
     }
 
     public function uploadSettings(Request $request)
@@ -74,7 +106,7 @@ class UserController extends Controller
                 Storage::delete('/public/images/' . Auth::user()->profilepic);
             }
             $request->image->storeAs('images', $filename, 'public');
-            \App\Models\User::where('id', Auth::user()->id)
+            User::where('id', Auth::user()->id)
                 ->update(['profilepic' => $filename]);
         }
         // upload cv file
@@ -84,28 +116,43 @@ class UserController extends Controller
                 Storage::delete('/public/files/' . Auth::user()->cv);
             }
             $request->cv->storeAs('files', $filename, 'public');
-            \App\Models\User::where('id', Auth::user()->id)
+            User::where('id', Auth::user()->id)
                 ->update(['cv' => $filename]);
         }
 
-        return redirect()->back();
+        return redirect('/profile');
+    }
+
+    public function updateInfo(Request $request)
+    {
+        User::where('id', Auth::user()->id)
+                ->update(['inleiding' => $request->input('inleiding'), 'telefoon' => $request->input('telefoon'), 'postcode' => $request->input('postcode'), 'website' => $request->input('website'), 'taalvoorkeur' => $request->input('taalvoorkeur')]);
+        return redirect('/profile');
     }
 
     public function getDribbbleShots(Request $request)
     {
         $url = $request->input('url');
-        \App\Models\User::where('id', Auth::user()->id)
+        User::where('id', Auth::user()->id)
             ->update(['dribbble_url' => $url]);
-        $crawler = Goutte::request('GET', $url);
+        $client = new Client();
+        $crawler = $client->request('GET', $url);
         $shots = $crawler->filter('.shot-thumbnail')->count();
         if ($shots > 0) {
-            for ($i = 0; $i < 4; $i++) { // 4 most recent pics
-                $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
-            };
-            $images = implode(',', $images);
-            \App\Models\User::where('id', Auth::user()->id)
+            if ($shots > 4) { // if there are more than 4 pics
+                for ($i = 0; $i < 4; $i++) { // take 4 most recent pics
+                    $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
+                };
+            } else { // if less than 4 pics
+                for ($i = 0; $i < $shots; $i++) { // take all pics
+                    $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
+                };
+            }
+            $images = implode(',', $images); // convert array to string
+            User::where('id', Auth::user()->id)
                 ->update(['portfolio' => $images]);
         }
-        return redirect()->back();
+
+        return redirect('/profile');
     }
 }

@@ -22,7 +22,7 @@ class JobFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->jobTitle,
+            'name' => $this->faker->jobTitle(),
             'description' => $this->faker->realText(200),
             'start_date' => $this->faker->date($format = 'Y-m-d', $min = 'now'),
             'company_id' => $this->faker->numberBetween($min = 1, $max = 5)

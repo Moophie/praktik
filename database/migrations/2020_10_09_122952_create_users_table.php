@@ -20,7 +20,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('type');
+            $table->text('inleiding')->nullable();
             $table->string('profilepic')->nullable();
+            $table->string('postcode')->nullable();
+            $table->string('telefoon')->nullable();
+            $table->string('website')->nullable();
+            $table->string('taalvoorkeur')->nullable();
             $table->string('cv')->nullable();
             $table->string('dribbble_url')->nullable();
             $table->text('portfolio')->nullable();

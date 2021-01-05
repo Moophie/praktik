@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -19,6 +20,12 @@ class CompanyController extends Controller
     {
         // Get the specific company with the given id and put it in an array
         $data['company'] = \App\Models\Company::where('id', $company)->first();
+
+        $lat = $data['company']->geolat;
+        $lng = $data['company']->geolng;
+
+        $data['nearest_station'] = DB::select("SELECT name, SQRT(POW(111.2 * (latitude - $lat), 2) + POW(111.2 * ($lng - longitude) *
+        COS(latitude / 57.3), 2)) AS distance FROM stations ORDER BY distance LIMIT 1");
 
         return view('companies/show', $data);
     }
@@ -46,7 +53,13 @@ class CompanyController extends Controller
         $company->address = $request->input('address');
         $company->geolat = $request->input('geolat');
         $company->geolng = $request->input('geolng');
-        $company->logo = $request->input('logo');
+
+        if ($request->hasFile('logo')) {
+            $filename = "logo_" . $company->name . "_" . $company->address;
+            $request->logo->storeAs('/companies/images', $filename, 'public');
+            $company->logo = $filename;
+        }
+
         $company->website = $request->input('website');
         $company->description = $request->input('description');
         $company->email = $request->input('email');
