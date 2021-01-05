@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class UserController extends Controller
 
     public function handleSignup(Request $request)
     {
-        $user = new \App\Models\User();
+        $user = new User();
 
         // check if email is unique
         $email = $user::where('email', $request->input('email'))->first();
@@ -77,8 +78,8 @@ class UserController extends Controller
 
     public function index()
     {
-        // Put all companies from the database in an array
-        $data['users'] = \Illuminate\Support\Facades\DB::table('users')->get();
+        // Put all users from the database in an array
+        $data['users'] = DB::table('users')->get();
 
         return view('users/index', $data);
     }
@@ -91,7 +92,7 @@ class UserController extends Controller
     public function show($user)
     {
         // Get the specific company with the given id and put it in an array
-        $data['user'] = \App\Models\User::where('id', $user)->first();
+        $data['user'] = User::where('id', $user)->first();
 
         return view('users/show', $data);
     }
@@ -105,7 +106,7 @@ class UserController extends Controller
                 Storage::delete('/public/images/' . Auth::user()->profilepic);
             }
             $request->image->storeAs('images', $filename, 'public');
-            \App\Models\User::where('id', Auth::user()->id)
+            User::where('id', Auth::user()->id)
                 ->update(['profilepic' => $filename]);
         }
         // upload cv file
@@ -115,17 +116,24 @@ class UserController extends Controller
                 Storage::delete('/public/files/' . Auth::user()->cv);
             }
             $request->cv->storeAs('files', $filename, 'public');
-            \App\Models\User::where('id', Auth::user()->id)
+            User::where('id', Auth::user()->id)
                 ->update(['cv' => $filename]);
         }
 
         return redirect('/profile');
     }
 
+    public function updateInfo(Request $request)
+    {
+        User::where('id', Auth::user()->id)
+                ->update(['inleiding' => $request->input('inleiding'), 'telefoon' => $request->input('telefoon'), 'postcode' => $request->input('postcode'), 'website' => $request->input('website'), 'taalvoorkeur' => $request->input('taalvoorkeur')]);
+        return redirect('/profile');
+    }
+
     public function getDribbbleShots(Request $request)
     {
         $url = $request->input('url');
-        \App\Models\User::where('id', Auth::user()->id)
+        User::where('id', Auth::user()->id)
             ->update(['dribbble_url' => $url]);
         $client = new Client();
         $crawler = $client->request('GET', $url);
@@ -141,7 +149,7 @@ class UserController extends Controller
                 };
             }
             $images = implode(',', $images); // convert array to string
-            \App\Models\User::where('id', Auth::user()->id)
+            User::where('id', Auth::user()->id)
                 ->update(['portfolio' => $images]);
         }
 

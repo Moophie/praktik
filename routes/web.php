@@ -28,6 +28,7 @@ Route::get('/logout', 'App\Http\Controllers\UserController@handleLogout');
 // user routes
 Route::get('/users', 'App\Http\Controllers\UserController@index')->middleware('auth');
 Route::get('/profile', 'App\Http\Controllers\UserController@profile')->middleware('auth');
+Route::post('/updateinfo', 'App\Http\Controllers\UserController@updateInfo')->middleware('auth');
 Route::post('/upload', 'App\Http\Controllers\UserController@uploadSettings')->middleware('auth');
 Route::get('/dribbble', 'App\Http\Controllers\UserController@getDribbbleShots')->middleware('auth');
 Route::get('/users/{user}', 'App\Http\Controllers\UserController@show')->middleware('auth');
