@@ -44,8 +44,8 @@ Route::get('/profile', function () {
     return view('profile');
 })->middleware('auth');
 
-Route::get('/settingspro', function () {
-    return view('settingspro');
+Route::get('/companyprofile', function () {
+    return view('/companies/profile');
 })->middleware('auth');
 
 // All routes related to jobs
