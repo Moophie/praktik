@@ -7,13 +7,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="/jobs">Jobs</a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="/settingspro">Professional settings</a>
-            </li> -->
+
             <li class="nav-item">
                 <a class="nav-link" href="/companies">Companies</a>
             </li>
-            @if(Auth::check())
+            @if(Auth::check())            
+            <li class="nav-item">
+                <a class="nav-link" href="/companyprofile">Company Profile</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/students">Students</a>
             </li>
