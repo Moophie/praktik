@@ -38,7 +38,7 @@ Student Profile
     </form>
     @elseif(!Auth::user()->portfolio)
     <p>You don't have any portfolio items yet.</p>
-    @else
+    @endif
     <?php $portfolioLinks = explode(',', Auth::user()->portfolio);
     // var_dump($portfolioLinks);
     ?>
@@ -49,8 +49,6 @@ Student Profile
         </li>
         @endforeach
     </ol>
-    @endif
-
 </div>
 
 @endsection

@@ -12,14 +12,14 @@ Student
 
 <div class="Wrapper bg-light">
     @if(Auth::user()->profilepic)
-    <img src="{{ asset('/storage/images/'.Auth::user()->profilepic) }}" alt="profile picture" width="150px">
+    <img src="{{ asset('/storage/images/'.Auth::user()->profilepic) }}" alt="profile picture" height="150px">
     @endif
     <h1>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h1>
     <p>This is a student description!</p>
     <h3>Portfolio</h3>
     @if(!Auth::user()->portfolio)
     <p>You don't have any portfolio items yet.</p>
-    <button class="btn btn-primary "><a href="/settings" style="color:white">Upload portfolio</a></button>
+    <button class="btn btn-primary "><a href="/profile" style="color:white">Upload portfolio</a></button>
     <br>
     <br>
     @else
@@ -38,13 +38,15 @@ Student
     <h3>CV</h3>
     @if(!Auth::user()->cv)
     <p>You didn't upload a CV yet.</p>
-    <button class="btn btn-primary "><a href="/settings" style="color:white">Upload CV</a></button>
-    @else
+    <button class="btn btn-primary "><a href="/profile" style="color:white">Upload CV</a></button>
+    @endif
     <?php
     $cv = Auth::user()->cv;
-    var_dump($cv);
+    // var_dump($cv);
+    // $filename = $cv;
+    // $path = storage_path($filename);
+    // return response()->file($path);
     ?>
-    @endif
 </div>
 
 @endsection
