@@ -26,17 +26,11 @@ Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
 Route::get('/logout', 'App\Http\Controllers\UserController@handleLogout');
 
 // user routes
-Route::get('/users', function () {
-    return view('users/index');
-})->middleware('auth');
-Route::get('/profile', function () {
-    return view('users/profile');
-})->middleware('auth');
 Route::get('/users', 'App\Http\Controllers\UserController@index')->middleware('auth');
-Route::get('/users/{user}', 'App\Http\Controllers\UserController@show')->middleware('auth');
-// All routes related to user settings
+Route::get('/profile', 'App\Http\Controllers\UserController@profile')->middleware('auth');
 Route::post('/upload', 'App\Http\Controllers\UserController@uploadSettings')->middleware('auth');
 Route::get('/dribbble', 'App\Http\Controllers\UserController@getDribbbleShots')->middleware('auth');
+Route::get('/users/{user}', 'App\Http\Controllers\UserController@show')->middleware('auth');
 
 // All routes related to companies
 Route::get('/companies', 'App\Http\Controllers\CompanyController@index');

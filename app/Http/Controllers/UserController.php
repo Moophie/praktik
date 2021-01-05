@@ -82,6 +82,11 @@ class UserController extends Controller
 
         return view('users/index', $data);
     }
+
+    public function profile()
+    {
+        return view('users/profile');
+    }
     
     public function show($user)
     {
@@ -114,7 +119,7 @@ class UserController extends Controller
                 ->update(['cv' => $filename]);
         }
 
-        return redirect('/users/index');
+        return redirect('/profile');
     }
 
     public function getDribbbleShots(Request $request)
