@@ -1,24 +1,3 @@
-<?php
-
-$parameters = "WHERE 1=1";
-
-if(!empty($_GET)){
-    if(!empty($_GET['rating'])){
-        $parameters = $parameters . " AND companies.rating >= " . $_GET['rating'];
-    }
-    if(!empty($_GET['pubtrans_score'])){
-        $parameters = $parameters . " AND companies.pubtrans_score >= " . $_GET['pubtrans_score'];
-    }
-    if(!empty($_GET['start_date'])){
-        $parameters = $parameters . " AND jobs.start_date > '" . $_GET['start_date'] . "'";
-    }
-}
-
-$query = "SELECT jobs.*, companies.name AS compname, companies.rating, companies.pubtrans_score FROM jobs
-INNER JOIN companies ON jobs.company_id = companies.id " . $parameters ." LIMIT 10";
-
-$jobs = DB::select($query); ?>
-
 @extends('layouts/app')
 
 @section('title')
@@ -65,4 +44,15 @@ $jobs = DB::select($query); ?>
             </div>
         @endforeach
     </div>
+
+
+    <div id="app">
+        <post v-  v-bind:post="post"></post>
+    </div>
+
+
+<script>
+
+</script>
+    
 @endsection
