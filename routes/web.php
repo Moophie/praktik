@@ -25,8 +25,9 @@ Route::get('/login', 'App\Http\Controllers\UserController@login')-> name('login'
 Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
 Route::get('/logout', 'App\Http\Controllers\UserController@handleLogout');
 
-Route::get('/student', function () {
-    return view('student');
+// Student routes
+Route::get('/students', function () {
+    return view('students/index');
 })->middleware('auth');
 
 // All routes related to student settings
@@ -41,7 +42,7 @@ Route::post('/companies/getCompanyInfo', 'App\Http\Controllers\CompanyController
 Route::get('/companies/{company}', 'App\Http\Controllers\CompanyController@show')->middleware('auth');
 
 Route::get('/profile', function () {
-    return view('profile');
+    return view('students/profile');
 })->middleware('auth');
 
 Route::get('/settingspro', function () {

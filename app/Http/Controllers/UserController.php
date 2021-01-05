@@ -97,7 +97,7 @@ class UserController extends Controller
                 ->update(['cv' => $filename]);
         }
 
-        return redirect('/student');
+        return redirect('/students/index');
     }
 
     public function getDribbbleShots(Request $request)
@@ -122,6 +122,6 @@ class UserController extends Controller
                 ->update(['portfolio' => $images]);
         }
 
-        return redirect('/student');
+        return redirect('/students/index');
     }
 }

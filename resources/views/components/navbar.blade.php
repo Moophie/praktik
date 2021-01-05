@@ -8,7 +8,7 @@
                 <a class="nav-link" href="/jobs">Jobs</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/student">Students</a>
+                <a class="nav-link" href="/students">Students</a>
             </li>
             <!-- <li class="nav-item">
                 <a class="nav-link" href="/settingspro">Professional settings</a>
