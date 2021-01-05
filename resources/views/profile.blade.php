@@ -11,16 +11,10 @@ Student Profile
 
 <div class="Wrapper bg-light">
     <h1>Profile settings</h1>
-
-    @if (Auth::check())
     @if(Auth::user()->profilepic)
     <img src="{{ asset('/storage/images/'.Auth::user()->profilepic) }}" alt="profile picture" height="150px">
     @endif
     <h2>Hello {{ Auth::user()->firstname }}!</h2>
-    @else
-    <div class="alert alert-info">Please log in</div>
-    @endif
-
     <p>This is where you can make changes to your profile!</p>
     <form class="form-group" action="/upload" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}

@@ -6,19 +6,15 @@ Student
 
 @section('content')
 
-    @component('components/navbar')
+@component('components/navbar')
 
 @endcomponent
 
 <div class="Wrapper bg-light">
-    @if(Auth::check())
     @if(Auth::user()->profilepic)
     <img src="{{ asset('/storage/images/'.Auth::user()->profilepic) }}" alt="profile picture" width="150px">
     @endif
     <h1>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h1>
-    @else
-    <div class="alert alert-info">Please log in</div>
-    @endif
     <p>This is a student description!</p>
     <h3>Portfolio</h3>
     @if(!Auth::user()->portfolio)
