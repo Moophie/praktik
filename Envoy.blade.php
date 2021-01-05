@@ -1,14 +1,28 @@
 @servers(['praktik' => ['deploybot@139.162.166.91']])
 
 @story('deploy')
-    git
-    composer
+git
+composer
 @endstory
 
 @task('git')
-    git pull origin main
+
+@if ($production == 'yes')
+    cd /home/deploybot/praktik
+@else
+    cd /home/deploybot/praktik-staging
+@endif
+git pull
+
 @endtask
 
 @task('composer')
-    composer install
+
+@if ($production == 'yes')
+    cd /home/deploybot/praktik
+@else
+    cd /home/deploybot/praktik-staging
+@endif
+composer install
+
 @endtask
