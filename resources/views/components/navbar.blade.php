@@ -7,14 +7,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="/jobs">Jobs</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/students">Students</a>
-            </li>
             <!-- <li class="nav-item">
                 <a class="nav-link" href="/settingspro">Professional settings</a>
             </li> -->
             <li class="nav-item">
                 <a class="nav-link" href="/companies">Companies</a>
+            </li>
+            @if(Auth::check())
+            <li class="nav-item">
+                <a class="nav-link" href="/students">Students</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/applications">Applications</a>
@@ -25,6 +26,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Log out</a>
             </li>
+            @else
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Log in</a>
+            </li>
+            @endif
         </ul>
     </div>
 </nav>

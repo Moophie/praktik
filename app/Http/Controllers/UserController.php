@@ -43,6 +43,7 @@ class UserController extends Controller
         // Hash the password with BCRYPT
         $user->password = Hash::make($request->input('password'));
         $user->type = $request->input('type');
+        $user->profilepic = "placeholder_pp.png";
         $user->save();
 
         return redirect('login');

@@ -27,6 +27,7 @@
                     <input class="form-control" type="password" name="password" id="password">
 
                     <input class="btn btn-primary" type="submit" value="Login">
+                    <a href="/signup">Sign up here</a>
                 </form>
             </div>
         </div>
