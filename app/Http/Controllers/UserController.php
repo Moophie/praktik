@@ -153,6 +153,6 @@ class UserController extends Controller
                 ->update(['portfolio' => $images]);
         }
 
-        return redirect('/users/index');
+        return redirect('/profile');
     }
 }

@@ -16,6 +16,7 @@
             <div class="jumbotron">
                 <h3><a href="/users/{{ $user->id }}">{{ $user->firstname }}</a></h3>
                 <img src="{{ asset('/storage/images/' . $user->profilepic) }}" alt="Profile picture" height="150px">
+                <a href="{{ $user->website }}" target="_blank" rel="noopener noreferrer">{{ $user->website }}</a>
             </div>
         @endforeach
     </div>
