@@ -14,15 +14,16 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'App\Http\Controllers\JobsController@filterJobs');
 
-// All routes related to login and signup
-Route::get('/login', 'App\Http\Controllers\UserController@login');
-Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
+// All routes related to signup
 Route::get('/signup', 'App\Http\Controllers\UserController@signup');
 Route::post('/signup', 'App\Http\Controllers\UserController@handleSignup');
+
+// Routes related to authentication and sessions (login and logout)
+Route::get('/login', 'App\Http\Controllers\UserController@login');
+Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
+Route::get('/logout', 'App\Http\Controllers\UserController@handleLogout');
 
 Route::get('/student', function () {
     return view('student');
@@ -39,8 +40,8 @@ Route::post('/companies', 'App\Http\Controllers\CompanyController@store');
 Route::post('/companies/getCompanyInfo', 'App\Http\Controllers\CompanyController@getCompanyInfo');
 Route::get('/companies/{company}', 'App\Http\Controllers\CompanyController@show');
 
-Route::get('/settings', function () {
-    return view('settings');
+Route::get('/profile', function () {
+    return view('profile');
 });
 
 Route::get('/settingspro', function () {

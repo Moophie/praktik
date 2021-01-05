@@ -5,7 +5,8 @@ Student
 @endsection
 
 @section('content')
-@component('components/navbar')
+
+    @component('components/navbar')
 
 @endcomponent
 
