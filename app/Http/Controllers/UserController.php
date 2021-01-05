@@ -25,12 +25,14 @@ class UserController extends Controller
         $email = $user::where('email', $request->input('email'))->first();
         if ($email) {
             $request->session()->flash('error', 'Email is already in use');
+
             return view('signup');
         }
 
         // check if both password are the same
         if ($request->input('password') != $request->input('confirmPassword')) {
             $request->session()->flash('error', 'Passwords are not the same');
+
             return view('signup');
         }
 
@@ -41,7 +43,6 @@ class UserController extends Controller
         // Hash the password with BCRYPT
         $user->password = Hash::make($request->input('password'));
         $user->type = $request->input('type');
-
         $user->save();
 
         return redirect('login');
@@ -56,19 +57,17 @@ class UserController extends Controller
     {
         // Get the user's email and password and put them in an array
         $credentials = $request->only(['email', 'password']);
-
         if (Auth::attempt($credentials)) {
             return redirect('/');
         };
-
         $request->session()->flash('error', 'Something went wrong');
+
         return view('login');
     }
 
     public function handleLogout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
@@ -98,7 +97,7 @@ class UserController extends Controller
                 ->update(['cv' => $filename]);
         }
 
-        return redirect()->back();
+        return redirect('/student');
     }
 
     public function getDribbbleShots(Request $request)
@@ -109,19 +108,20 @@ class UserController extends Controller
         $crawler = Goutte::request('GET', $url);
         $shots = $crawler->filter('.shot-thumbnail')->count();
         if ($shots > 0) {
-            if ($shots > 4) {
-                for ($i = 0; $i < 4; $i++) { // 4 most recent pics
+            if ($shots < 4) { // if there are less than 4 pics
+                for ($i = 0; $i < $shots; $i++) { // take 4 most recent pics
                     $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
                 };
-            } else {
-                for ($i = 0; $i < $shots; $i++) { // 4 most recent pics
+            } else { // if less than 4 pics
+                for ($i = 0; $i < $shots; $i++) { // take all pics
                     $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
                 };
             }
-            $images = implode(',', $images);
+            $images = implode(',', $images); // convert array to string
             \App\Models\User::where('id', Auth::user()->id)
                 ->update(['portfolio' => $images]);
         }
-        return redirect()->back();
+
+        return redirect('/student');
     }
 }
