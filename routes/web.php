@@ -21,7 +21,7 @@ Route::get('/signup', 'App\Http\Controllers\UserController@signup');
 Route::post('/signup', 'App\Http\Controllers\UserController@handleSignup');
 
 // Routes related to authentication and sessions (login and logout)
-Route::get('/login', 'App\Http\Controllers\UserController@login')-> name('login');
+Route::get('/login', 'App\Http\Controllers\UserController@login')->name('login');
 Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
 Route::get('/logout', 'App\Http\Controllers\UserController@handleLogout');
 
@@ -39,8 +39,6 @@ Route::post('/companies', 'App\Http\Controllers\CompanyController@store')->middl
 Route::post('/companies/getCompanyInfo', 'App\Http\Controllers\CompanyController@getCompanyInfo');
 Route::get('/companies/{company}', 'App\Http\Controllers\CompanyController@show');
 
-
-
 Route::get('/companyprofile', function () {
     return view('/companies/profile');
 })->middleware('auth');
@@ -53,8 +51,6 @@ Route::post('/jobs', 'App\Http\Controllers\JobsController@store')->middleware('a
 
 // All routes related to applications
 Route::get('/applications', 'App\Http\Controllers\ApplicationsController@index')->middleware('auth');
-Route::get('/applications/{application}', 'App\Http\Controllers\ApplicationsController@show')->middleware('auth');
 Route::get('/jobs/{job}/create', 'App\Http\Controllers\ApplicationsController@create')->middleware('auth');
 Route::post('/applications/{job}', 'App\Http\Controllers\ApplicationsController@store') -> name('applications')->middleware('auth');
-
 Route::post('/label/{application}', 'App\Http\Controllers\LabelsController@put') -> name('labels')->middleware('auth');

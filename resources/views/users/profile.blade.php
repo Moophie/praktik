@@ -30,14 +30,12 @@
         </form>
         <br>
         <h3>Portfolio</h3>
-        @if (!Auth::user()->dribbble_url)
-            <form class="form-group" action="/dribbble" method="get">
-                <label for="url">Dribbble URL</label>
-                <input class="form-control" type="text" name="url" id="url"
-                    placeholder="Please give your Dribbble-profile URL">
-                <input type="submit" class="btn btn-primary" value="Get portfolio">
-            </form>
-        @elseif(!Auth::user()->portfolio)
+        <form class="form-group" action="/dribbble" method="get">
+            <label for="url">Dribbble URL</label>
+            <input class="form-control" type="text" name="url" id="url" placeholder="Please give your Dribbble-profile URL">
+            <input type="submit" class="btn btn-primary" value="Get portfolio">
+        </form>
+        @if (!Auth::user()->portfolio)
             <p>You don't have any portfolio items yet.</p>
         @endif
         <?php $portfolioLinks = explode(',', Auth::user()->portfolio); ?>

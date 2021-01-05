@@ -9,7 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Goutte;
+use Goutte\Client;
 use Illuminate\Support\Facades\Log;
 
 class GetDribbbleShotsJob implements ShouldQueue
@@ -42,7 +42,8 @@ class GetDribbbleShotsJob implements ShouldQueue
             // var_dump($url);
             if ($url) {
                 // scrape dribbble url
-                $crawler = Goutte::request('GET', $url);
+                $client = new Client();
+                $crawler = $client->request('GET', $url);
                 $shots = $crawler->filter('.shot-thumbnail')->count();
                 // var_dump($shots);
                 if ($shots > 0) {

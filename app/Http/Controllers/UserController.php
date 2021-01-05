@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
-use Goutte;
+use Goutte\Client;
 
 class UserController extends Controller
 {
@@ -127,7 +127,8 @@ class UserController extends Controller
         $url = $request->input('url');
         \App\Models\User::where('id', Auth::user()->id)
             ->update(['dribbble_url' => $url]);
-        $crawler = Goutte::request('GET', $url);
+        $client = new Client();
+        $crawler = $client->request('GET', $url);
         $shots = $crawler->filter('.shot-thumbnail')->count();
         if ($shots > 0) {
             if ($shots > 4) { // if there are more than 4 pics
