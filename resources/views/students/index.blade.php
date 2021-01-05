@@ -1,52 +1,27 @@
 @extends('layouts/app')
 
 @section('title')
-Student
+    Students
 @endsection
 
 @section('content')
 
-@component('components/navbar')
+    @component('components/navbar')
 
-@endcomponent
+    @endcomponent
 
-<div class="Wrapper bg-light">
-    @if(Auth::user()->profilepic)
-    <img src="{{ asset('/storage/images/'.Auth::user()->profilepic) }}" alt="profile picture" height="150px">
-    @endif
-    <h1>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h1>
-    <p>This is a student description!</p>
-    <h3>Portfolio</h3>
-    @if(!Auth::user()->portfolio)
-    <p>You don't have any portfolio items yet.</p>
-    <button class="btn btn-primary "><a href="/profile" style="color:white">Upload portfolio</a></button>
-    <br>
-    <br>
-    @else
-    <?php
-    $portfolioLinks = (explode(",", Auth::user()->portfolio));
-    // var_dump($portfolioLinks);
-    ?>
-    <ol class="portfolio">
-        @foreach($portfolioLinks as $picture)
-        <li class="portfolio-picture">
-            <img src="{{ $picture }}" alt="">
-        </li>
+    <div class="wrapper bg-light">
+        <button class="btn btn-primary "><a href="/profile" style="color:white">Update your profile</a></button>
+        <br>
+        <br>
+
+        <h1>All Students</h1>
+
+        @foreach ($students as $student)
+            <div class="jumbotron">
+                <h3><a href="/students/{{ $student->id }}">{{ $student->firstname }}</a></h3>
+            </div>
         @endforeach
-    </ol>
-    @endif
-    <h3>CV</h3>
-    @if(!Auth::user()->cv)
-    <p>You didn't upload a CV yet.</p>
-    <button class="btn btn-primary "><a href="/profile" style="color:white">Upload CV</a></button>
-    @endif
-    <?php
-    $cv = Auth::user()->cv;
-    // var_dump($cv);
-    // $filename = $cv;
-    // $path = storage_path($filename);
-    // return response()->file($path);
-    ?>
-</div>
+    </div>
 
 @endsection

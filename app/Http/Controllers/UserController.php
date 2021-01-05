@@ -74,6 +74,22 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    public function index()
+    {
+        // Put all companies from the database in an array
+        $data['students'] = \Illuminate\Support\Facades\DB::table('users')->get();
+
+        return view('students/index', $data);
+    }
+    
+    public function show($user)
+    {
+        // Get the specific company with the given id and put it in an array
+        $data['student'] = \App\Models\User::where('id', $user)->first();
+
+        return view('students/show', $data);
+    }
+
     public function uploadSettings(Request $request)
     {
         // upload profile picture

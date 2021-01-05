@@ -29,6 +29,11 @@ Route::get('/logout', 'App\Http\Controllers\UserController@handleLogout');
 Route::get('/students', function () {
     return view('students/index');
 })->middleware('auth');
+Route::get('/profile', function () {
+    return view('students/profile');
+})->middleware('auth');
+Route::get('/students', 'App\Http\Controllers\UserController@index')->middleware('auth');
+Route::get('/students/{student}', 'App\Http\Controllers\UserController@show')->middleware('auth');
 
 // All routes related to student settings
 Route::post('/upload', 'App\Http\Controllers\UserController@uploadSettings')->middleware('auth');
@@ -41,9 +46,7 @@ Route::post('/companies', 'App\Http\Controllers\CompanyController@store')->middl
 Route::post('/companies/getCompanyInfo', 'App\Http\Controllers\CompanyController@getCompanyInfo')->middleware('auth');
 Route::get('/companies/{company}', 'App\Http\Controllers\CompanyController@show')->middleware('auth');
 
-Route::get('/profile', function () {
-    return view('students/profile');
-})->middleware('auth');
+
 
 Route::get('/settingspro', function () {
     return view('settingspro');
