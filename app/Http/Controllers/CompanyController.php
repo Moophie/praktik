@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
     public function index()
     {
         // Put all companies from the database in an array
-        $data['companies'] = \Illuminate\Support\Facades\DB::table('companies')->get();
+        $data['companies'] = DB::table('companies')->get();
 
         return view('companies/index', $data);
     }
@@ -19,7 +21,7 @@ class CompanyController extends Controller
     public function show($company)
     {
         // Get the specific company with the given id and put it in an array
-        $data['company'] = \App\Models\Company::where('id', $company)->first();
+        $data['company'] = Company::where('id', $company)->first();
 
         $lat = $data['company']->geolat;
         $lng = $data['company']->geolng;
@@ -44,7 +46,7 @@ class CompanyController extends Controller
 
         $request->flash(); */
 
-        $company = new \App\Models\Company();
+        $company = new Company();
 
         // Set object properties from the user input
         $company->user_id = $request->input('user_id');
@@ -79,6 +81,20 @@ class CompanyController extends Controller
         //$request->session()->pull('message', 'Permanent message');*/
 
         return redirect('/companies');
+    }
+
+    public function showProfile()
+    {
+        $data['company'] = Company::where('user_id', Auth::user()->id)->first();
+
+        return view("companies/profile", $data);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        Company::where('user_id', Auth::user()->id)
+        ->update(['name' => $request->input('name'), 'city' => $request->input('city'), 'address' => $request->input('address'), 'geolat' => $request->input('geolat'), 'geolng' => $request->input('geolng'), 'logo' => $request->input('logo'), 'website' => $request->input('website'), 'email' => $request->input('email'), 'description' => $request->input('description'), 'phone' => $request->input('phone')]);
+        return redirect('/companyprofile');
     }
 
     public function getCompanyInfo(Request $request)

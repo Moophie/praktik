@@ -35,14 +35,12 @@ Route::get('/users/{user}', 'App\Http\Controllers\UserController@show')->middlew
 
 // All routes related to companies
 Route::get('/companies', 'App\Http\Controllers\CompanyController@index');
+Route::get('/companyprofile', 'App\Http\Controllers\CompanyController@showProfile')->middleware('auth');
 Route::get('/companies/create', 'App\Http\Controllers\CompanyController@create')->middleware('auth');
+Route::post('/companyprofile', 'App\Http\Controllers\CompanyController@updateProfile')->middleware('auth');
 Route::post('/companies', 'App\Http\Controllers\CompanyController@store')->middleware('auth');
 Route::post('/companies/getCompanyInfo', 'App\Http\Controllers\CompanyController@getCompanyInfo');
 Route::get('/companies/{company}', 'App\Http\Controllers\CompanyController@show');
-
-Route::get('/companyprofile', function () {
-    return view('/companies/profile');
-})->middleware('auth');
 
 // All routes related to jobs
 Route::get('/jobs', 'App\Http\Controllers\JobsController@index');
