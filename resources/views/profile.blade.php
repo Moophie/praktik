@@ -14,7 +14,7 @@ Student Profile
 
     @if (Auth::check())
     @if(Auth::user()->profilepic)
-    <img src="{{ asset('/storage/images/'.Auth::user()->profilepic) }}" alt="profile picture" width="150px">
+    <img src="{{ asset('/storage/images/'.Auth::user()->profilepic) }}" alt="profile picture" height="150px">
     @endif
     <h2>Hello {{ Auth::user()->firstname }}!</h2>
     @else

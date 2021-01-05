@@ -109,9 +109,15 @@ class UserController extends Controller
         $crawler = Goutte::request('GET', $url);
         $shots = $crawler->filter('.shot-thumbnail')->count();
         if ($shots > 0) {
-            for ($i = 0; $i < 4; $i++) { // 4 most recent pics
-                $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
-            };
+            if ($shots > 4) {
+                for ($i = 0; $i < 4; $i++) { // 4 most recent pics
+                    $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
+                };
+            } else {
+                for ($i = 0; $i < $shots; $i++) { // 4 most recent pics
+                    $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
+                };
+            }
             $images = implode(',', $images);
             \App\Models\User::where('id', Auth::user()->id)
                 ->update(['portfolio' => $images]);
