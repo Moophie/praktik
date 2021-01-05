@@ -78,17 +78,17 @@ class UserController extends Controller
     public function index()
     {
         // Put all companies from the database in an array
-        $data['students'] = \Illuminate\Support\Facades\DB::table('users')->get();
+        $data['users'] = \Illuminate\Support\Facades\DB::table('users')->get();
 
-        return view('students/index', $data);
+        return view('users/index', $data);
     }
     
     public function show($user)
     {
         // Get the specific company with the given id and put it in an array
-        $data['student'] = \App\Models\User::where('id', $user)->first();
+        $data['user'] = \App\Models\User::where('id', $user)->first();
 
-        return view('students/show', $data);
+        return view('users/show', $data);
     }
 
     public function uploadSettings(Request $request)
@@ -114,7 +114,7 @@ class UserController extends Controller
                 ->update(['cv' => $filename]);
         }
 
-        return redirect('/students/index');
+        return redirect('/users/index');
     }
 
     public function getDribbbleShots(Request $request)
@@ -139,6 +139,6 @@ class UserController extends Controller
                 ->update(['portfolio' => $images]);
         }
 
-        return redirect('/students/index');
+        return redirect('/users/index');
     }
 }
