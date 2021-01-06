@@ -1,6 +1,9 @@
-@servers(['praktik' => ['deploybot@139.162.166.91']])
+<?php $message = isset($message) ? $message : null; ?>
+<?php $production = isset($production) ? $production : null; ?>
+<?php $task = isset($task) ? $task : null; ?>
+<?php $__container->servers(['praktik' => ['deploybot@139.162.166.91']]); ?>
 
-@setup
+<?php
 if($task == "pause"){
     if($production == 'yes'){
     $message = get_current_user() . " paused the production website.";
@@ -24,15 +27,15 @@ if($task == "deploy"){
     $message = get_current_user() . " just updated the staging website so changes can be extensively tested first :)";
     }
 }
-@endsetup
+?>
 
-@task('deploy')
+<?php $__container->startTask('deploy'); ?>
 
-@if ($production == 'yes')
+<?php if ($production == 'yes'): ?>
     cd /home/deploybot/praktik
-@else
+<?php else: ?>
     cd /home/deploybot/praktik-staging
-@endif
+<?php endif; ?>
 
 php artisan down
 git reset --hard HEAD
@@ -41,33 +44,34 @@ composer update
 php artisan migrate --force
 php artisan up
 
-@endtask
+<?php $__container->endTask(); ?>
 
-@task('pause')
+<?php $__container->startTask('pause'); ?>
 
-@if ($production == 'yes')
+<?php if ($production == 'yes'): ?>
     cd /home/deploybot/praktik
-@else
+<?php else: ?>
     cd /home/deploybot/praktik-staging
-@endif
+<?php endif; ?>
 
 php artisan down
 
-@endtask
+<?php $__container->endTask(); ?>
 
-@task('resume')
+<?php $__container->startTask('resume'); ?>
 
-@if ($production == 'yes')
+<?php if ($production == 'yes'): ?>
     cd /home/deploybot/praktik
-@else
+<?php else: ?>
     cd /home/deploybot/praktik-staging
-@endif
+<?php endif; ?>
 
 php artisan up
 
-@endtask
+<?php $__container->endTask(); ?>
 
-@after
+<?php $_vars = get_defined_vars(); $__container->finished(function() use ($_vars) { extract($_vars); 
+<?php
 if($task == "pause"){
     if($production == 'yes'){
     $message = get_current_user() . " paused the production website.";
@@ -91,5 +95,7 @@ if($task == "deploy"){
     $message = get_current_user() . " just updated the staging website so changes can be extensively tested first :)";
     }
 }
-@discord('https://discord.com/api/webhooks/796157285579096075/qflJ9Y8Fr6ROiU3dX9DMRzcjziBt25-RcUqb2ognY09SFt9R1F7bWXqfbYldOkOw0qNn', $message)
-@endafter
+?>
+
+ if (! isset($task)) $task = null; Laravel\Envoy\Discord::make('https://discord.com/api/webhooks/796157285579096075/qflJ9Y8Fr6ROiU3dX9DMRzcjziBt25-RcUqb2ognY09SFt9R1F7bWXqfbYldOkOw0qNn', $message)->task($task)->send();
+}); ?>
