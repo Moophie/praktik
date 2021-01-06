@@ -28,7 +28,9 @@
     
     <script src="{{asset('js/app.js')}}"></script>
     @yield('extrascripts')
+    <script ></script>
     
+    <script src=" asset('/js/app.js')"></script>
 </body>
 
 </html>

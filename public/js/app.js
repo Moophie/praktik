@@ -19390,44 +19390,11 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-Vue.component('post', {
-  data: function data() {
-    return {
-      newComment: ""
-    };
-  },
-  template: "<div class='post'>\n        <h2 class=\"post__user\">{{post.user.username}}</h2>\n        <img class='post__image' v-bind:src=\"post.image\">\n        <h3 class='post__likes'>\n          <a href=\"#\" class=\"fa fa-heart-o\"></a>\n          \n          {{post.likes}} likes\n        </h3>    \n        <div class='comments' >\n          <div class='comment' v-for=\"comment in post.comments\"><strong>{{comment.username}}</strong> {{comment.text}}</div>\n          <input v-model=\"newComment\" v-on:keyup.13.prevent=\"addComment(newComment)\" type=\"text\" class=\"post__commentText\">\n        </div>\n      </div>",
+new Vue({
+  el: '#apply',
   methods: {
-    addComment: function addComment(newComment) {
-      var comment = {
-        username: "goodbytes",
-        text: newComment
-      };
-      this.post.comments.push(comment);
-      this.newComment = "";
-    }
-  },
-  props: ['post']
-});
-var app = new Vue({
-  el: "#app",
-  data: {
-    posts: []
-  },
-  mounted: function mounted() {
-    this.getPosts();
-    console.log(this.getPosts());
-  },
-  methods: {
-    addComment: function addComment() {},
-    getPosts: function getPosts() {
-      var that = this;
-      fetch('https://gist.githubusercontent.com/iamgoodbytes/c6ff3231bbb3cf4e6f292021413379cd/raw/aca385bd5cfca3e39bf352477c7b90e50fb4ad9e/fake-instagram-post-json.json').then(function (res) {
-        return res.json();
-      }).then(function (json) {
-        console.log(json);
-        that.posts.push(json.data.post);
-      });
+    say: function say(message) {
+      alert(message);
     }
   }
 });

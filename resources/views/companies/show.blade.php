@@ -11,6 +11,13 @@
     @endcomponent
     
     <div class="wrapper bg-light">
+
+
+        <div id="apply">
+            <button v-on:click="say('You applied at {{ $company->name }}')">Apply now</button>
+        </div>
+        
+
         <h1>{{ $company->name }}</h1>
         <h3>{{ $company->city }}</h3>
         <h5>{{ $company->address }}</h5>
