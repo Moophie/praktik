@@ -130,11 +130,14 @@ class UserController extends Controller
 
     public function getDribbbleShots(Request $request)
     {
+        // get url from form
         $url = $request->input('url');
         User::where('id', Auth::user()->id)
             ->update(['dribbble_url' => $url]);
+        // scrape dribbble url
         $client = new Client();
         $crawler = $client->request('GET', $url);
+        // count number of portfolio items (shots)
         $shots = $crawler->filter('.shot-thumbnail')->count();
         if ($shots > 0) {
             if ($shots > 4) { // if there are more than 4 pics
