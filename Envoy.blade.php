@@ -36,7 +36,7 @@ if($task == "deploy"){
 
 php artisan down
 git reset --hard HEAD
-git pull
+git pull origin main
 composer update
 php artisan migrate --force
 php artisan up
