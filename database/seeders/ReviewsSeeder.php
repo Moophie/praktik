@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Review;
 use Illuminate\Database\Seeder;
 
 class ReviewsSeeder extends Seeder
@@ -13,6 +14,6 @@ class ReviewsSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Review::factory(2)->create();
+        Review::factory(2)->create();
     }
 }

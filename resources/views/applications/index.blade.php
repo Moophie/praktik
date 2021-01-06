@@ -35,16 +35,4 @@
             <h5>label: {{ $app->label->name }}</h5>
         @endforeach
     </div>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/applications/create">Create application</a>
-                </li>
-
-            </ul>
-        </div>
-    </nav>
 @endsection

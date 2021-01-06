@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 
 class LabelsController extends Controller
 {
-    public function put(Request $request, $application){
-        $data['label'] = \App\Models\Application::where('applications.id', $application)->update(['applications.label_id' => $request->input('label')]);
+    public function put(Request $request, $application)
+    {
+        $data['label'] = Application::where('applications.id', $application)->update(['applications.label_id' => $request->input('label')]);
         return redirect('applications');
     }
 }

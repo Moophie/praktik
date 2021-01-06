@@ -14,49 +14,42 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'App\Http\Controllers\JobsController@filterJobs');
 
-// All routes related to login and signup
-Route::get('/login', 'App\Http\Controllers\UserController@login');
-Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
+// All routes related to signup
 Route::get('/signup', 'App\Http\Controllers\UserController@signup');
 Route::post('/signup', 'App\Http\Controllers\UserController@handleSignup');
 
-Route::get('/student', function () {
-    return view('student');
-});
+// Routes related to authentication and sessions (login and logout)
+Route::get('/login', 'App\Http\Controllers\UserController@login')->name('login');
+Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
+Route::get('/logout', 'App\Http\Controllers\UserController@handleLogout');
 
-// All routes related to student settings
-Route::post('/upload', 'App\Http\Controllers\UserController@uploadSettings');
-Route::get('/dribbble', 'App\Http\Controllers\UserController@getDribbbleShots');
+// user routes
+Route::get('/users', 'App\Http\Controllers\UserController@index')->middleware('auth');
+Route::get('/profile', 'App\Http\Controllers\UserController@profile')->middleware('auth');
+Route::post('/updateinfo', 'App\Http\Controllers\UserController@updateInfo')->middleware('auth');
+Route::post('/upload', 'App\Http\Controllers\UserController@uploadSettings')->middleware('auth');
+Route::get('/dribbble', 'App\Http\Controllers\UserController@getDribbbleShots')->middleware('auth');
+Route::get('/users/{user}', 'App\Http\Controllers\UserController@show')->middleware('auth');
 
 // All routes related to companies
 Route::get('/companies', 'App\Http\Controllers\CompanyController@index');
-Route::get('/companies/create', 'App\Http\Controllers\CompanyController@create');
-Route::post('/companies', 'App\Http\Controllers\CompanyController@store');
+Route::get('/companyprofile', 'App\Http\Controllers\CompanyController@showProfile')->middleware('auth');
+Route::get('/companies/create', 'App\Http\Controllers\CompanyController@create')->middleware('auth');
+Route::post('/companyprofile', 'App\Http\Controllers\CompanyController@updateProfile')->middleware('auth');
+Route::post('/companies', 'App\Http\Controllers\CompanyController@store')->middleware('auth');
 Route::post('/companies/getCompanyInfo', 'App\Http\Controllers\CompanyController@getCompanyInfo');
 Route::get('/companies/{company}', 'App\Http\Controllers\CompanyController@show');
 
-Route::get('/settings', function () {
-    return view('settings');
-});
-
-Route::get('/settingspro', function () {
-    return view('settingspro');
-});
-
 // All routes related to jobs
 Route::get('/jobs', 'App\Http\Controllers\JobsController@index');
-Route::get('/jobs/create', 'App\Http\Controllers\JobsController@create');
+Route::get('/jobs/create', 'App\Http\Controllers\JobsController@create')->middleware('auth');
 Route::get('/jobs/{job}', 'App\Http\Controllers\JobsController@show');
-Route::post('/jobs', 'App\Http\Controllers\JobsController@store');
+Route::post('/jobs', 'App\Http\Controllers\JobsController@store')->middleware('auth');
 
 // All routes related to applications
-Route::get('/applications', 'App\Http\Controllers\ApplicationsController@index');
-Route::get('/applications/{application}', 'App\Http\Controllers\ApplicationsController@show');
-Route::get('/jobs/{job}/create', 'App\Http\Controllers\ApplicationsController@create');
-Route::post('/applications/{job}', 'App\Http\Controllers\ApplicationsController@store') -> name('applications');
-
-Route::post('/label/{application}', 'App\Http\Controllers\LabelsController@put') -> name('labels');
+Route::get('/applications', 'App\Http\Controllers\ApplicationsController@index')->middleware('auth');
+Route::get('/jobs/{job}/create', 'App\Http\Controllers\ApplicationsController@create')->middleware('auth');
+Route::post('/applications/{job}', 'App\Http\Controllers\ApplicationsController@store') -> name('applications')->middleware('auth');
+Route::post('/label/{application}', 'App\Http\Controllers\LabelsController@put') -> name('labels')->middleware('auth');

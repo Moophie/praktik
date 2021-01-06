@@ -1,13 +1,3 @@
-<?php
-
-$lat = $company->geolat;
-$lng = $company->geolng;
-
-$nearest_station = DB::select("SELECT name, SQRT(POW(111.2 * (latitude - $lat), 2) + POW(111.2 * ($lng - longitude) *
-COS(latitude / 57.3), 2))
-AS distance FROM stations ORDER BY distance LIMIT 1");
-?>
-
 @extends('layouts/app')
 
 @section('title')
@@ -19,6 +9,7 @@ AS distance FROM stations ORDER BY distance LIMIT 1");
     @component('components/navbar')
 
     @endcomponent
+    
     <div class="wrapper bg-light">
         <h1>{{ $company->name }}</h1>
         <h3>{{ $company->city }}</h3>
@@ -26,7 +17,7 @@ AS distance FROM stations ORDER BY distance LIMIT 1");
         <img src="{{ $company->logo }}" alt="Company logo">
         <br>
         <br>
-        
+
         <h3 class="clear-both">Description</h3>
         <p>{{ $company->description }}</p>
 
@@ -45,4 +36,5 @@ AS distance FROM stations ORDER BY distance LIMIT 1");
         <h3>Nearest Station</h3>
         <p>{{ $nearest_station[0]->name }}</p>
     </div>
+
 @endsection

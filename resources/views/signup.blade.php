@@ -9,9 +9,11 @@ Sign up
     <div class="container">
         <div class="header">
             <h1>Signup</h1>
-            @if($flash=session('error'))
+
+            @if ($flash = session('error'))
             <div class="alert alert-danger">{{ $flash }}</div>
             @endif
+
         </div>
     </div>
 
@@ -37,13 +39,13 @@ Sign up
                 <label for="type">Student or company?</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="type" id="student" value="student">
-                    <label class="form-check-label" for="student">
+                    <label class="form-check-label" for="student" style="color: black;">
                         Student
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="type" id="company" value="company">
-                    <label class="form-check-label" for="company">
+                    <label class="form-check-label" for="company" style="color: black;">
                         Company
                     </label>
                 </div>
