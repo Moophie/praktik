@@ -22,6 +22,7 @@
         <h5>Telefoon</h5>
         <p>{{ $user->telefoon }}</p>
         <h5>Portfolio</h5>
+        
         @if (empty($user->portfolio))
             <p>This user has no portfolio items</p>
         @else
@@ -34,6 +35,7 @@
                 @endforeach
             </ol>
         @endif
+
     </div>
 
 @endsection

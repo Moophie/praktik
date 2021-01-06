@@ -65,7 +65,8 @@
             <div class="form-group row">
                 <label for="description" class="col-sm-2 col-form-label">Description</label>
                 <div class="col-sm-10">
-                    <textarea name="description" class="form-control" id="description" cols="30" rows="6" required></textarea>
+                    <textarea name="description" class="form-control" id="description" cols="30" rows="6"
+                        required></textarea>
                 </div>
             </div>
 

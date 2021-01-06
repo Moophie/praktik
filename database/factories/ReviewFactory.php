@@ -25,7 +25,7 @@ class ReviewFactory extends Factory
             'content' => $this->faker->realText(200),
             'rating' => $this->faker->numberBetween($min = 1, $max = 5),
             'user_id' => $this->faker->numberBetween($min = 1, $max = 4),
-            'company_id' => $this->faker->numberBetween($min = 1, $max = 5),
+            'company_id' => $this->faker->numberBetween($min = 1, $max = 5)
         ];
     }
 }

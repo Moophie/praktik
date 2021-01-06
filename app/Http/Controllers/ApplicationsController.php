@@ -12,9 +12,10 @@ class ApplicationsController extends Controller
     {
         $user = Auth::user();
 
+        // If the user is a student, get all his applications
         if ($user->type === "student") {
             $data['applications'] = Application::with('user', 'job', 'label')->where('applications.user_id', '=', $user->id)->get();
-        } else {
+        } else { // If the user is not a student, get all the applications made to the user's company
             $data['applications'] = Application::join('jobs', 'jobs.id', '=', 'applications.job_id')->join('users', 'users.id', '=', 'applications.user_id')->select('jobs.*', 'applications.*', 'users.*')->where('jobs.company_id', '=', $user->id)->get();
         }
 

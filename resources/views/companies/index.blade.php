@@ -24,6 +24,7 @@
                 <p>{{ $company->description }}</p>
             </div>
         @endforeach
+        
     </div>
 
 @endsection

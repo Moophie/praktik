@@ -34,6 +34,7 @@
 
     <div class="vacancyWrapper">
         <h1>Internship vacancies</h1>
+
         @foreach ($jobs as $job)
             <div class="Vacancy bg-light">
                 <a href="/jobs/{{ $job->id }}">
@@ -46,6 +47,7 @@
                 <p>Starts on: {{ $job->start_date }}</p>
             </div>
         @endforeach
+        
     </div>
-    
+
 @endsection

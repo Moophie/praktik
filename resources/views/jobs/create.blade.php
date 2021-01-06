@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <!-- deze input moet later weg natuurlijk !! -->
+            <!-- Only for testing -->
             <div class="form-group row">
                 <label for="company_id" class="col-sm-2 col-form-label">Company_id (testing)</label>
                 <div class="col-sm-10">

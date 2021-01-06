@@ -6,15 +6,16 @@
 
 @section('content')
     <div class="loginContainer">
-        <div class="">
+        <div>
             <div class="header">
                 <h1>Login</h1>
             </div>
         </div>
 
-        <div class="">
+        <div>
             <div class="loginForm">
                 <form action="" method="post">
+                    
                     @if ($flash = session('error'))
                         <div class="alert alert-danger">{{ $flash }}</div>
                     @endif
@@ -32,5 +33,4 @@
             </div>
         </div>
     </div>
-
 @endsection

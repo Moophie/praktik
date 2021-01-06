@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         $user = new User();
 
-        // check if email is unique
+        // Check if email is unique
         $email = $user::where('email', $request->input('email'))->first();
         if ($email) {
             $request->session()->flash('error', 'Email is already in use');
@@ -28,7 +28,7 @@ class UserController extends Controller
             return view('signup');
         }
 
-        // check if both password are the same
+        // Check if both passwords are the same
         if ($request->input('password') != $request->input('confirmPassword')) {
             $request->session()->flash('error', 'Passwords are not the same');
 
@@ -39,8 +39,7 @@ class UserController extends Controller
         $user->firstname = $request->input('firstname');
         $user->lastname = $request->input('lastname');
         $user->email = $request->input('email');
-        // Hash the password with BCRYPT
-        $user->password = Hash::make($request->input('password'));
+        $user->password = Hash::make($request->input('password')); // Hash the password with BCRYPT
         $user->type = $request->input('type');
         $user->profilepic = "placeholder_pp.png";
         $user->save();
@@ -57,9 +56,11 @@ class UserController extends Controller
     {
         // Get the user's email and password and put them in an array
         $credentials = $request->only(['email', 'password']);
+
         if (Auth::attempt($credentials)) {
             return redirect('/');
         };
+
         $request->session()->flash('error', 'Something went wrong');
 
         return view('login');
@@ -97,7 +98,7 @@ class UserController extends Controller
 
     public function uploadSettings(Request $request)
     {
-        // upload profile picture
+        // Upload profile picture
         if ($request->hasFile('image')) {
             $filename = $request->image->getClientOriginalName();
             if (Auth::user()->profilepic) {
@@ -107,7 +108,7 @@ class UserController extends Controller
             User::where('id', Auth::user()->id)
                 ->update(['profilepic' => $filename]);
         }
-        // upload cv file
+        // Upload cv file
         if ($request->hasFile('cv')) {
             $filename = $request->cv->getClientOriginalName();
             if (Auth::user()->cv) {
@@ -125,6 +126,7 @@ class UserController extends Controller
     {
         User::where('id', Auth::user()->id)
                 ->update(['inleiding' => $request->input('inleiding'), 'telefoon' => $request->input('telefoon'), 'postcode' => $request->input('postcode'), 'website' => $request->input('website'), 'taalvoorkeur' => $request->input('taalvoorkeur')]);
+        
         return redirect('/profile');
     }
 
@@ -136,17 +138,18 @@ class UserController extends Controller
         $client = new Client();
         $crawler = $client->request('GET', $url);
         $shots = $crawler->filter('.shot-thumbnail')->count();
+
         if ($shots > 0) {
-            if ($shots > 4) { // if there are more than 4 pics
-                for ($i = 0; $i < 4; $i++) { // take 4 most recent pics
+            if ($shots > 4) { // If there are more than 4 pics
+                for ($i = 0; $i < 4; $i++) { // Take 4 most recent pics
                     $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
                 };
-            } else { // if less than 4 pics
-                for ($i = 0; $i < $shots; $i++) { // take all pics
+            } else { // If less than 4 pics
+                for ($i = 0; $i < $shots; $i++) { // Take all pics
                     $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
                 };
             }
-            $images = implode(',', $images); // convert array to string
+            $images = implode(',', $images); // Convert array to string
             User::where('id', Auth::user()->id)
                 ->update(['portfolio' => $images]);
         }

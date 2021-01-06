@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,18 +13,20 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
+// Homepage
 Route::get('/', 'App\Http\Controllers\JobsController@filterJobs');
 
-// All routes related to signup
+// Signup
 Route::get('/signup', 'App\Http\Controllers\UserController@signup');
 Route::post('/signup', 'App\Http\Controllers\UserController@handleSignup');
 
-// Routes related to authentication and sessions (login and logout)
+// Authentication and sessions (login/logout)
 Route::get('/login', 'App\Http\Controllers\UserController@login')->name('login');
 Route::post('/login', 'App\Http\Controllers\UserController@handleLogin');
 Route::get('/logout', 'App\Http\Controllers\UserController@handleLogout');
 
-// user routes
+// Users
+// Middleware('auth') forces non-logged in users back to the login
 Route::get('/users', 'App\Http\Controllers\UserController@index')->middleware('auth');
 Route::get('/profile', 'App\Http\Controllers\UserController@profile')->middleware('auth');
 Route::post('/updateinfo', 'App\Http\Controllers\UserController@updateInfo')->middleware('auth');
@@ -33,7 +34,7 @@ Route::post('/upload', 'App\Http\Controllers\UserController@uploadSettings')->mi
 Route::get('/dribbble', 'App\Http\Controllers\UserController@getDribbbleShots')->middleware('auth');
 Route::get('/users/{user}', 'App\Http\Controllers\UserController@show')->middleware('auth');
 
-// All routes related to companies
+// Companies
 Route::get('/companies', 'App\Http\Controllers\CompanyController@index');
 Route::get('/companyprofile', 'App\Http\Controllers\CompanyController@showProfile')->middleware('auth');
 Route::get('/companies/create', 'App\Http\Controllers\CompanyController@create')->middleware('auth');
@@ -42,13 +43,13 @@ Route::post('/companies', 'App\Http\Controllers\CompanyController@store')->middl
 Route::post('/companies/getCompanyInfo', 'App\Http\Controllers\CompanyController@getCompanyInfo');
 Route::get('/companies/{company}', 'App\Http\Controllers\CompanyController@show');
 
-// All routes related to jobs
+// Jobs
 Route::get('/jobs', 'App\Http\Controllers\JobsController@index');
 Route::get('/jobs/create', 'App\Http\Controllers\JobsController@create')->middleware('auth');
 Route::get('/jobs/{job}', 'App\Http\Controllers\JobsController@show');
 Route::post('/jobs', 'App\Http\Controllers\JobsController@store')->middleware('auth');
 
-// All routes related to applications
+// Applications
 Route::get('/applications', 'App\Http\Controllers\ApplicationsController@index')->middleware('auth');
 Route::get('/jobs/{job}/create', 'App\Http\Controllers\ApplicationsController@create')->middleware('auth');
 Route::post('/applications/{job}', 'App\Http\Controllers\ApplicationsController@store') -> name('applications')->middleware('auth');

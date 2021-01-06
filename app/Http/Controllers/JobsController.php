@@ -47,8 +47,12 @@ class JobsController extends Controller
 
     public function filterJobs()
     {
+        // This needs to be the starting point of building your query
+        // Leaving it empty does not work
         $parameters = "WHERE 1=1";
 
+        // Get the user's filters through the GET request
+        // Add the relevant filters to the parameter string
         if (!empty($_GET)) {
             if (!empty($_GET['rating'])) {
                 $parameters = $parameters . " AND companies.rating >= " . $_GET['rating'];
@@ -60,10 +64,12 @@ class JobsController extends Controller
                 $parameters = $parameters . " AND jobs.start_date > '" . $_GET['start_date'] . "'";
             }
         }
-
+        
+        // Construct the query
         $query = "SELECT jobs.*, companies.name AS compname, companies.rating, companies.pubtrans_score FROM jobs
         INNER JOIN companies ON jobs.company_id = companies.id " . $parameters ." LIMIT 10";
 
+        // Execute the query
         $jobs = DB::select($query);
 
         return view('index', ['jobs' => $jobs]);

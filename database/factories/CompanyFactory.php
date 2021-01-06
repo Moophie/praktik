@@ -34,7 +34,7 @@ class CompanyFactory extends Factory
             'description' => $this->faker->realText(200),
             'email' => $this->faker->companyEmail(),
             'phone' => $this->faker->phoneNumber(),
-            'rating' => $this->faker->randomfloat($nbMaxDecimals = 2, $min = 1, $max = 5),
+            'rating' => $this->faker->randomfloat($nbMaxDecimals = 2, $min = 1, $max = 5)
         ];
     }
 }

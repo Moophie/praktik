@@ -12,6 +12,7 @@
 
     <div class="wrapper bg-light">
         <h1>All Students</h1>
+        
         @foreach ($users as $user)
             <div class="jumbotron">
                 <h3><a href="/users/{{ $user->id }}">{{ $user->firstname }}</a></h3>
@@ -19,6 +20,7 @@
                 <a href="{{ $user->website }}" target="_blank" rel="noopener noreferrer">{{ $user->website }}</a>
             </div>
         @endforeach
+
     </div>
 
 @endsection

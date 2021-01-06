@@ -23,9 +23,12 @@ class CompanyController extends Controller
         // Get the specific company with the given id and put it in an array
         $data['company'] = Company::where('id', $company)->first();
 
+        // Get the company's geolocation
         $lat = $data['company']->geolat;
         $lng = $data['company']->geolng;
 
+        // Select the nearest station from the database
+        // This is done through a formula that calculates distance and then orders all the stations, only selecting the first
         $data['nearest_station'] = DB::select("SELECT name, SQRT(POW(111.2 * (latitude - $lat), 2) + POW(111.2 * ($lng - longitude) *
         COS(latitude / 57.3), 2)) AS distance FROM stations ORDER BY distance LIMIT 1");
 
@@ -94,6 +97,7 @@ class CompanyController extends Controller
     {
         Company::where('user_id', Auth::user()->id)
         ->update(['name' => $request->input('name'), 'city' => $request->input('city'), 'address' => $request->input('address'), 'geolat' => $request->input('geolat'), 'geolng' => $request->input('geolng'), 'logo' => $request->input('logo'), 'website' => $request->input('website'), 'email' => $request->input('email'), 'description' => $request->input('description'), 'phone' => $request->input('phone')]);
+        
         return redirect('/companyprofile');
     }
 

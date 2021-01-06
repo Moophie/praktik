@@ -34,5 +34,6 @@
             <p>{{ $app->message }}</p>
             <h5>label: {{ $app->label->name }}</h5>
         @endforeach
+        
     </div>
 @endsection

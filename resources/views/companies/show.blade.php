@@ -9,7 +9,7 @@
     @component('components/navbar')
 
     @endcomponent
-    
+
     <div class="wrapper bg-light">
         <h1>{{ $company->name }}</h1>
         <h3>{{ $company->city }}</h3>

@@ -28,7 +28,7 @@ class Company extends Model
         $pubtrans_score = 0;
 
         // If the nearest station is closer than 2 kilometers, add 1 to the public transport score
-        // TODO: Add extra parameters en if statements for nearby busses, main roads, etc...
+        // TODO: Add extra parameters and if statements for nearby busses, main roads, etc...
         if ($nearest_station[0]->distance < 2) {
             $pubtrans_score += 1;
         }

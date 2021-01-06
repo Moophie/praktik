@@ -33,31 +33,31 @@ class GetDribbbleShotsJob implements ShouldQueue
      */
     public function handle()
     {
-        // get all user ids from database
+        // Get all user ids from database
         $ids = User::pluck('id');
-        // var_dump($ids);
+
         foreach ($ids as $id) {
-            // get dribbble urls from each user id
+            // Get dribbble urls from each user id
             $url = User::where('id', $id)->value('dribbble_url');
-            // var_dump($url);
+
             if ($url) {
-                // scrape dribbble url
+                // Scrape dribbble url
                 $client = new Client();
                 $crawler = $client->request('GET', $url);
                 $shots = $crawler->filter('.shot-thumbnail')->count();
-                // var_dump($shots);
+
                 if ($shots > 0) {
                     if ($shots == 1) {
-                        $images = $crawler->filter('figure > img')->attr("src"); // get picture
+                        $images = $crawler->filter('figure > img')->attr("src"); // Get the picture
                     } else {
-                        for ($i = 0; $i < 4; $i++) { // 4 most recent pics
-                            $images[] = $crawler->filter('figure > img')->eq($i)->attr("src"); // save pictures in array
+                        for ($i = 0; $i < 4; $i++) { // Only get the 4 most recent pictures
+                            $images[] = $crawler->filter('figure > img')->eq($i)->attr("src"); // Save the pictures in an array
                         };
-                        $images = implode(',', $images); // convert array to string
+                        $images = implode(',', $images); // Convert the array to string
                     }
-                    // var_dump($images);
+
                     User::where('id', $id)
-                        ->update(['portfolio' => $images]); // save pictures urls in database
+                        ->update(['portfolio' => $images]); // Save pictures urls in the database
                 }
             }
         };
