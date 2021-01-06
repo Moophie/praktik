@@ -20,7 +20,7 @@ class JobsController extends Controller
     {
         // Get the specific job with the given id and put it in an array
         // Optionally show all the applications for it
-        $data['job'] = \App\Models\Job::where('id', $job)->with('company')->first();
+        $data['job'] = Job::where('id', $job)->with('company')->first();
 
         return view('jobs/show', $data);
     }
@@ -32,7 +32,7 @@ class JobsController extends Controller
 
     public function store(Request $request)
     {
-        $job= new \App\Models\Job();
+        $job= new Job();
 
         // Set object properties from the user input
         $job->name = $request->input('name');

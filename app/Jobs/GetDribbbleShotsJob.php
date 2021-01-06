@@ -2,13 +2,13 @@
 
 namespace App\Jobs;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Goutte\Client;
 use Illuminate\Support\Facades\Log;
 
@@ -34,11 +34,11 @@ class GetDribbbleShotsJob implements ShouldQueue
     public function handle()
     {
         // get all user ids from database
-        $ids = \App\Models\User::pluck('id');
+        $ids = User::pluck('id');
         // var_dump($ids);
         foreach ($ids as $id) {
             // get dribbble urls from each user id
-            $url = \App\Models\User::where('id', $id)->value('dribbble_url');
+            $url = User::where('id', $id)->value('dribbble_url');
             // var_dump($url);
             if ($url) {
                 // scrape dribbble url
@@ -56,7 +56,7 @@ class GetDribbbleShotsJob implements ShouldQueue
                         $images = implode(',', $images); // convert array to string
                     }
                     // var_dump($images);
-                    \App\Models\User::where('id', $id)
+                    User::where('id', $id)
                         ->update(['portfolio' => $images]); // save pictures urls in database
                 }
             }
