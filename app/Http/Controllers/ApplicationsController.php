@@ -36,10 +36,11 @@ class ApplicationsController extends Controller
     public function store(Request $request, $job)
     {
         $application = new \App\Models\Application;
+        $user = Auth::user();
 
         // Set object properties from the user input
         $application->job_id = $job;
-        $application->user_id = $request->input('user_id');
+        $application->user_id = $user->id;
         $application->message = $request->input('message');
         // Set default label (new)
         $application->label_id = "1";

@@ -20,10 +20,6 @@
             <textarea name="message" id="message" cols="30" rows="10"></textarea>
             <br><br>
 
-            <label for="user_id">User id</label>
-            <input type="number" name="user_id" id="user_id">
-            <br><br>
-
             <input type="submit" value="Submit">
         </form>
     </div>
