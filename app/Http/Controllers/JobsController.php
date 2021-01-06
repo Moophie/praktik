@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +11,7 @@ class JobsController extends Controller
     public function index()
     {
         // Put all jobs from the database in an array
-        $data['jobs'] = DB::table('jobs')->get();
+        $data['jobs'] = Job::all();
 
         return view('jobs/index', $data);
     }

@@ -13,7 +13,7 @@ class CompanyController extends Controller
     public function index()
     {
         // Put all companies from the database in an array
-        $data['companies'] = DB::table('companies')->get();
+        $data['companies'] = Company::all();
 
         return view('companies/index', $data);
     }

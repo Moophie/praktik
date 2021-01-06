@@ -6,9 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Http;
 use Goutte\Client;
 
 class UserController extends Controller
@@ -79,7 +77,7 @@ class UserController extends Controller
     public function index()
     {
         // Put all users from the database in an array
-        $data['users'] = DB::table('users')->get();
+        $data['users'] = User::all();
 
         return view('users/index', $data);
     }
