@@ -9,7 +9,7 @@
     @component('components/navbar')
 
     @endcomponent
-    <div class="jobsWrapper bg-light">
+    <div class="wrapper bg-light">
         <h1>{{ $job->name }}</h1>
         <h3>at <a href="/companies/{{ $job->company->id }}">{{ $job->company->name }}</a></h3>
         <p>{{ $job->description }}</p>
