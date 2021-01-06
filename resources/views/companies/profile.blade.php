@@ -19,6 +19,9 @@
     @endcomponent
 
     <div class="wrapper bg-light">
+
+        @if(!empty($company))
+
         <form method="POST" action="" enctype="multipart/form-data">
             <h1>Your company <button type="submit" class="btn btn-primary float-right">Update Company</button></h1>
             @csrf
@@ -86,5 +89,13 @@
                 </div>
             </div>
         </form>
+
+        @else 
+        
+        <h2>There's no company linked to this user.</h2>
+
+        @endif
+        
     </div>
+
 @endsection
