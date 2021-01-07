@@ -47,14 +47,13 @@ class GetDribbbleShotsJob implements ShouldQueue
                 $shots = $crawler->filter('.shot-thumbnail')->count();
 
                 if ($shots > 0) {
-                    if ($shots == 1) {
-                        $images = $crawler->filter('figure > img')->attr("src"); // Get the picture
-                    } else {
-                        for ($i = 0; $i < 4; $i++) { // Only get the 4 most recent pictures
-                            $images[] = $crawler->filter('figure > img')->eq($i)->attr("src"); // Save the pictures in an array
-                        };
-                        $images = implode(',', $images); // Convert the array to string
-                    }
+                    $images = [];
+
+                    for ($i = 0; $i < 4 && $i < $shots; $i++) { // Take 4 most recent pics
+                        $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
+                    };
+        
+                    $images = implode(',', $images); // Convert array to string
 
                     User::where('id', $id)
                         ->update(['portfolio' => $images]); // Save pictures urls in the database

@@ -140,15 +140,11 @@ class UserController extends Controller
         $shots = $crawler->filter('.shot-thumbnail')->count();
 
         if ($shots > 0) {
-            if ($shots > 4) { // If there are more than 4 pics
-                for ($i = 0; $i < 4; $i++) { // Take 4 most recent pics
-                    $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
-                };
-            } else { // If less than 4 pics
-                for ($i = 0; $i < $shots; $i++) { // Take all pics
-                    $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
-                };
-            }
+            $images = [];
+            for ($i = 0; $i < 4 && $i < $shots; $i++) { // Take 4 most recent pics
+                $images[] = $crawler->filter('figure > img')->eq($i)->attr("src");
+            };
+
             $images = implode(',', $images); // Convert array to string
             User::where('id', Auth::user()->id)
                 ->update(['portfolio' => $images]);
