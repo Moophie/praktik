@@ -14,7 +14,11 @@
         <div class="top">
             <h1>Application for {{ $application->job->name }}</h1>
             <h3>by {{ $application->user->firstname }} {{ $application->user->lastname }}</h3>
-            <p>on {{ $application->updated_at }} — {{$application->label->name }} </p><button type="button" class="btn btn-primary label" onclick='openModal()'>change label</button>
+            <p>on {{ $application->updated_at }} — {{$application->label->name }} </p>
+
+            @if($application->user->id !=  $application->user_id)
+            <button type="button" class="btn btn-primary label" onclick='openModal()'>change label</button>
+            @endif
         </div>
     </div>
 
