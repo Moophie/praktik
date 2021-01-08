@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class JobsController extends Controller
 {
@@ -32,12 +33,12 @@ class JobsController extends Controller
     public function store(Request $request)
     {
         $job= new \App\Models\Job();
-
+        $user = Auth::user();
         // Set object properties from the user input
         $job->name = $request->input('name');
         $job->description = $request->input('description');
         $job->start_date = $request->input('start_date');
-        $job->company_id = $request->input('company_id');
+        $job->company_id = $user->id;
 
         $job->save();
         
