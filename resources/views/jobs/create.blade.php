@@ -1,42 +1,54 @@
 @extends('layouts/app')
 
 @section('title')
-    Create job
+Create job
 @endsection
 
 @section('content')
 
-    @component('components/navbar')
+@component('components/navbar')
 
-    @endcomponent
+@endcomponent
 
-    <div class="wrapper bg-light">
-        <form action="/jobs" method="post">
-            <h1>Add new job listing <input type="submit" value="Submit" class="btn btn-primary float-right"></h1>
+<div class="wrapper bg-light">
+    <form action="/jobs" method="post">
+        <h1>Add new job listing <input type="submit" value="Submit" class="btn btn-primary float-right"></h1>
 
-            {{ csrf_field() }}
+        {{ csrf_field() }}
 
-            <div class="form-group row">
-                <label for="name" class="col-sm-2 col-form-label">Job title</label>
-                <div class="col-sm-10">
-                    <input type="text" name="name" id="name" class="form-control">
-                </div>
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Job title</label>
+            <div class="col-sm-10">
+                <input type="text" name="name" id="name" class="form-control">
             </div>
+        </div>
 
-            <div class="form-group row">
-                <label for="description" class="col-sm-2 col-form-label">Description</label>
-                <div class="col-sm-10">
-                    <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
-                </div>
-            </div>
+        <div class="form-group row">
+            <label for="company" class="col-sm-2 col-form-label">Company</label>
+            <div class="col-sm-10">
+                <select name="label" id="label">
 
-            <div class="form-group row">
-                <label for="start_date" class="col-sm-2 col-form-label">Start date</label>
-                <div class="col-sm-10">
-                    <input type="date" name="start_date" id="start_date" class="form-control">
-                </div>
+                    @foreach($company as $company)
+                    <option value="{{ $company->id }}">{{ $company->name }}</option>
+                    @endforeach
+                </select>
             </div>
-        </form>
-    </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="description" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+                <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="start_date" class="col-sm-2 col-form-label">Start date</label>
+            <div class="col-sm-10">
+                <input type="date" name="start_date" id="start_date" class="form-control">
+            </div>
+        </div>
+    </form>
+</div>
 
 @endsection

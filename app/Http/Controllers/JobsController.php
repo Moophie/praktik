@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,9 @@ class JobsController extends Controller
 
     public function create()
     {
-        return view('jobs/create');
+        $user = Auth::user();
+        $data['company'] = Company::where('companies.user_id', '=', $user->id)->get();
+        return view('jobs/create', $data);
     }
 
     public function store(Request $request)
@@ -39,7 +42,7 @@ class JobsController extends Controller
         $job->name = $request->input('name');
         $job->description = $request->input('description');
         $job->start_date = $request->input('start_date');
-        $job->company_id = $user->id;
+        $job->company_id = $request->input('label');
 
         $job->save();
         
