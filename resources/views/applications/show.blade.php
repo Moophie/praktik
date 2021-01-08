@@ -22,16 +22,6 @@
         </div>
     </div>
 
-    <div class="jobsWrapper bg-light">
-        <div class="container">
-            <div class="top">
-                <h1>Application for {{ $application->job->name }}</h1>
-                <h3>by {{ $application->user->firstname }} {{ $application->user->lastname }}</h3>
-                <p>on {{ $application->updated_at }} — {{ $application->label->name }} </p><button type="button"
-                    class="btn btn-primary label" onclick='openModal()'>change label</button>
-            </div>
-        </div>
-
         <br>
 
         <div class="container">
