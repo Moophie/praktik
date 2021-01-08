@@ -21,7 +21,7 @@
         <h1>{{ $company->name }}</h1>
         <h3>{{ $company->city }}</h3>
         <h5>{{ $company->address }}</h5>
-        <img src="{{ $company->logo }}" alt="Company logo">
+        <img src="{{ asset('/storage/images/' . $company->logo) }}" alt="Company logo" height="200px">
         <br>
         <br>
 

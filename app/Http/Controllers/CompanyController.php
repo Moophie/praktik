@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -60,8 +61,8 @@ class CompanyController extends Controller
         $company->geolng = $request->input('geolng');
 
         if ($request->hasFile('logo')) {
-            $filename = "logo_" . $company->name . "_" . $company->address;
-            $request->logo->storeAs('/companies/images', $filename, 'public');
+            $filename = $request->logo->getClientOriginalName();
+            $request->logo->storeAs('images', $filename, 'public');
             $company->logo = $filename;
         }
 
@@ -96,8 +97,8 @@ class CompanyController extends Controller
     public function updateProfile(Request $request)
     {
         Company::where('user_id', Auth::user()->id)
-        ->update(['name' => $request->input('name'), 'city' => $request->input('city'), 'address' => $request->input('address'), 'geolat' => $request->input('geolat'), 'geolng' => $request->input('geolng'), 'logo' => $request->input('logo'), 'website' => $request->input('website'), 'email' => $request->input('email'), 'description' => $request->input('description'), 'phone' => $request->input('phone')]);
-        
+        ->update(['name' => $request->input('name'), 'city' => $request->input('city'), 'address' => $request->input('address'), 'geolat' => $request->input('geolat'), 'geolng' => $request->input('geolng'), 'website' => $request->input('website'), 'email' => $request->input('email'), 'description' => $request->input('description'), 'phone' => $request->input('phone')]);
+
         return redirect('/companyprofile');
     }
 
