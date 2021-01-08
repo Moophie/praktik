@@ -7,7 +7,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/jobs">Jobs</a>
             </li>
-
+        
             <li class="nav-item">
                 <a class="nav-link" href="/companies">Companies</a>
             </li>
@@ -33,7 +33,6 @@
                     <a class="nav-link" href="/login">Log in</a>
                 </li>
             @endif
-
         </ul>
     </div>
 </nav>

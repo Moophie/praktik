@@ -40,7 +40,7 @@ class ApplicationsController extends Controller
 
         // Set object properties from the user input
         $application->job_id = $job;
-        $application->user_id = $request->input('user_id');
+        $application->user_id = Auth::user()->id;
         $application->message = $request->input('message');
         // Set default label (new)
         $application->label_id = "1";
