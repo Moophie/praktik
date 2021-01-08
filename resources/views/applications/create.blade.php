@@ -18,6 +18,7 @@
             <label for="message">Write a motivation letter</label>
             <br>
             <textarea name="message" id="message" cols="30" rows="10"></textarea>
+            <br><br>
 
             <input type="submit" value="Submit">
         </form>

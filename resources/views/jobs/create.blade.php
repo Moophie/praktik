@@ -36,14 +36,6 @@
                     <input type="date" name="start_date" id="start_date" class="form-control">
                 </div>
             </div>
-
-            <!-- Only for testing -->
-            <div class="form-group row">
-                <label for="company_id" class="col-sm-2 col-form-label">Company_id (testing)</label>
-                <div class="col-sm-10">
-                    <input type="number" name="company_id" id="company_id" class="form-control">
-                </div>
-            </div>
         </form>
     </div>
 
