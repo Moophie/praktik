@@ -16,8 +16,10 @@
             <h3>by {{ $application->user->firstname }} {{ $application->user->lastname }}</h3>
             <p>on {{ $application->updated_at }} — {{$application->label->name }} </p>
 
-            @if($application->user->id !=  $application->user_id)
+            @if($application->user_id !=  $application->company_id)
             <button type="button" class="btn btn-primary label" onclick='openModal()'>change label</button>
+            @else
+
             @endif
         </div>
     </div>

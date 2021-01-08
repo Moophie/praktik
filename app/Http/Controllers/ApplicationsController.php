@@ -25,7 +25,7 @@ class ApplicationsController extends Controller
 
     public function show($application)
     {
-        $data['application'] = Application::where('applications.id', $application)->with('user')->first();
+        $data['application'] = Application::where('applications.id', $application)->join('jobs', 'jobs.id', '=', 'applications.job_id')->join('companies', 'jobs.company_id', '=', 'companies.id')->join('users', 'users.id', '=', 'companies.user_id')->select('jobs.*', 'applications.*', 'users.id as company_id', 'users.firstname', 'users.lastname', 'users.portfolio', 'users.email', 'users.cv', 'applications.user_id as applicant_id')->first();
 
         return view('applications/show', $data);
     }

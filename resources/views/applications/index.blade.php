@@ -28,7 +28,7 @@
         <br><br>
 
         @foreach ($applications as $app)
-            <a href="/applications/{{ $app->app_id }}">
+            <a href="/applications/{{ $app->id }}">
                 <h3>{{ $app->user->firstname }} {{ $app->user->lastname }} applied for "{{ $app->job->name }}"</h3>
             </a>
             <p>{{ $app->message }}</p>
